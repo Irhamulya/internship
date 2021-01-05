@@ -1,0 +1,48 @@
+form {
+	margin-top: 50px;
+}
+.navbar {
+	opacity: 0.87;
+	height: 80px; 
+}
+
+.navbaryu {
+	height: 80px; 
+}
+
+.items li a{
+	color: #fff; 
+}
+
+.judul hr{
+	width: 550px;
+	border-top: 4px solid #666;
+}
+
+.logic {
+	margin-top: 70px;
+	margin-bottom: 120px;
+}
+
+.footer-judul hr{
+	width: 350px;
+	border-top: 1px solid #fff;
+}
+
+.footer-judul p{
+	font-size: 13px;
+	color: #fff;
+}
+
+.footer-judul ul a{
+	font-size: 13px;
+	color: #fff;
+}
+
+.footer-judul h4{
+	color: #fff;
+}
+
+.bawah {
+	height: 60px;
+}
