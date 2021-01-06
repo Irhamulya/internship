@@ -97,6 +97,7 @@ class Participant extends CI_Controller
 	public function lakukan_download(){				
 		force_download('./asset/doc/SURAT Balasan BD.docx',NULL);
 	}	
+
 	public function tolakpeserta($id)
 	{
 		$data['user']=$this->db->get_where('user',['email'=>$this->session->userdata('email')])->row_array();

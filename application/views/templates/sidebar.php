@@ -5,7 +5,7 @@
   }
 </style>
     <!-- Sidebar -->
-    <ul  class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul  class="navbar-nav bg-gradient-primary sidebar sidebar-white accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?=base_url('user') ?>">
@@ -15,7 +15,7 @@
       </a>
 
       <!-- Divider -->
-      <hr class="sidebar-divider "style="background-color:#808080">
+      <hr class="sidebar-divider "style="background-color:#fff	">
 
 
       <!-- Query Menu -->
@@ -32,7 +32,7 @@
 
       <!-- Looping -->
       <?php foreach ($menu as $m):?>       
-      <div class="sidebar-heading"style="color:#C1C1C1;">
+      <div class="sidebar-heading"style="color:#fff;">
           <?= $m['menu']; ?>      </div>
       
 
@@ -54,12 +54,12 @@
               <li class="nav-item">
               <?php endif ; ?>
                 <a class="nav-link pb-0" href="<?= base_url($sm['url'])?>">
-                <i class="<?= $sm['icon']?> " style="color:#C1C1C1;"></i>
-                <span style="color:#C1C1C1;"><?= $sm['title']?></span></a>
+                <i class="<?= $sm['icon']?> " style="color:#fff;"></i>
+                <span style="color:#fff;"><?= $sm['title']?></span></a>
               </li>
             <?php endforeach ;?>
 
-           <hr class="sidebar-divider mt-3" style="background-color:#C1C1C1;">
+           <hr class="sidebar-divider mt-3" style="background-color:#fff;">
 
         <?php endforeach ;?>
       
@@ -69,18 +69,18 @@
 
       <li class="nav-item">
         <a class="nav-link" href="<?= base_url('auth/logout');?>" >
-          <i class="fas fa-fw fa-sign-out-alt" style="color:#C1C1C1;"></i>
-          <span style="color:#C1C1C1;">logout </span></a>
+          <i class="fas fa-fw fa-sign-out-alt" style="color:#fff;"></i>
+          <span style="color:#fff;">logout </span></a>
       </li>
    
 
 
       <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block" style="background-color:#C1C1C1;">
+      <hr class="sidebar-divider d-none d-md-block" style="background-color:#fff;">
 
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline" >
-        <button class="rounded-circle border-0" id="sidebarToggle" style="background-color:#9A9A9A;"></button>
+        <button class="rounded-circle border-0" id="sidebarToggle" style="background-color:#fff;"></button>
       </div>
 
     </ul>
