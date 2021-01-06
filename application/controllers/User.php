@@ -27,17 +27,7 @@ class User extends CI_Controller
 		$this->load->view('templates/footer' );	
 	}
 
-	public function tglaw_rules($tanggal_mulai){
-			if ($tanggal_mulai<date('d-m-Y'))
-			{
-             		$this->form_validation->set_message('tglaw_rules', 'This {field} field cant accept this');
-			        return FALSE;
-            }
-			     
-            else{
-                	return TRUE;
-                }
-	}
+
 	
 		public function history(){
 			$data['title']= 'Internship Page';

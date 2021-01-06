@@ -16,7 +16,7 @@
 <footer class="sticky-footer bg-light">
 	<div class="container my-auto">
 		<div class="copyright text-center my-auto">
-			<span>Copyright &copy; Bandung Design <?= date('Y'); ?></span>
+			<span>Copyright &copy; Irham Ulya <?= date('Y'); ?></span>
 		</div>
 	</div>
 </footer>
@@ -82,6 +82,19 @@
 		$(this).next('.custom-file-label').addClass("selected").html(fileName);
 
 	});
+
+	var dt = new Date();
+	dt.setDate(dt.getDate() + 8);
+	var dayaf = dt.toISOString().split('T')[0];
+
+	document.getElementsByName("date_in")[0].setAttribute('min', dayaf);
+
+
+	var de = $('#tanggal_mulai').val();
+	de.setDate(de.getDate() + 8);
+	var dayen = de.toISOString().split('T')[0];
+
+	document.getElementsByName("date_out")[0].setAttribute('min', dayen);
 
 
 	$('.form-check-input').on('click', function () {

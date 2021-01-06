@@ -139,7 +139,7 @@
            </div>
            <div class="form-group">
            			<label for="tanggal_mulai">Tanggal Mulai</label>
-					<input type="date" class="form-control" id="tanggal_mulai" name="tanggal_mulai">
+			   		<input class="form-control" type="date" id="tanggal_mulai" name="tanggal_mulai" required>
            </div>
            <div class="form-group">
            			<label for="tanggal_akhir">Tanggal Berakhir</label>
