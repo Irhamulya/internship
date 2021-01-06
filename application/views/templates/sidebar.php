@@ -10,7 +10,8 @@
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?=base_url('user') ?>">
         <div class="sidebar-brand-icon">
-         <img src="<?= base_url('asset/img/BD_logo.png'); ?>"width="90%"    >
+         <!-- <img src="<?= base_url('asset/img/BD_logo.png'); ?>"width="90%"> -->
+			<div style="color: white;" class="sidebar-brand-text mx-1">Pt. Pacifa Raya Technology</div>
         </div>
       </a>
 
