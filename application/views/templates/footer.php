@@ -76,27 +76,30 @@
 
 <script>
 
-
+	//Choose file
 	$('.custom-file-input').on('change', function () {
 		let fileName = $(this).val().split('\\').pop();
 		$(this).next('.custom-file-label').addClass("selected").html(fileName);
 
 	});
+	//end of Choose file
 
+	//Register Date validator
 	var dt = new Date();
-	dt.setDate(dt.getDate() + 8);
+	dt.setDate(dt.getDate() + 7);
 	var dayaf = dt.toISOString().split('T')[0];
 
-	document.getElementsByName("date_in")[0].setAttribute('min', dayaf);
+	document.getElementsByName("tanggal_mulai")[0].setAttribute('min', dayaf);
 
+	$("#tanggal_mulai").change(function(e) {
+		var de = new Date($('#tanggal_mulai').val());
+		de.setDate(de.getDate() + 7);
+		var dayen = de.toISOString().split('T')[0];
+		document.getElementsByName("tanggal_akhir")[0].setAttribute('min', dayen);
+	});
+	//end of Data validator
 
-	var de = $('#tanggal_mulai').val();
-	de.setDate(de.getDate() + 8);
-	var dayen = de.toISOString().split('T')[0];
-
-	document.getElementsByName("date_out")[0].setAttribute('min', dayen);
-
-
+	//Role Acces ajax
 	$('.form-check-input').on('click', function () {
 		const menuId = $(this).data('menu');
 		const roleId = $(this).data('role');
@@ -114,6 +117,7 @@
 		});
 
 	});
+	//end of Role Acces ajax
 
 </script>
 

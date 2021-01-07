@@ -10,10 +10,10 @@
 	<!-- Sidebar - Brand -->
 	<a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('user') ?>">
 		<div class="sidebar-brand-icon">
-			<i class="fas fa-building"></i>
+			<i class="fas fa-building text-white" ></i>
 			<!-- <img src="<?= base_url('asset/img/BD_logo.png'); ?>"width="90%"> -->
 		</div>
-		<div style="color: white;" class="sidebar-brand-text mx-1">Pt. Pacifa Raya Technology</div>
+		<div style="color: white; font-size: 13.5px;" class="sidebar-brand-text mx-1" >Pt. Pacifa Raya Technology</div>
 	</a>
 
 	<!-- Divider -->
@@ -56,7 +56,7 @@
 				<li class="nav-item">
 			<?php endif; ?>
 			<a class="nav-link pb-0" href="<?= base_url($sm['url']) ?>">
-				<i class="<?= $sm['icon'] ?> " style="color:#fff;"></i>
+				<i class="<?= $sm['icon'] ?>" style="color:#fff;"> 	</i>
 				<span style="color:#fff;"><?= $sm['title'] ?></span></a>
 			</li>
 		<?php endforeach; ?>

@@ -29,7 +29,7 @@ class Auth extends CI_Controller
 
 		if ($this->form_validation->run()==false) 
 		{
-			$data['title']='Bandung Design';
+			$data['title']='Login page';
         	$data['divisi']=$this->db->get('ketentuan')->result_array();
         	
 			$this->load->view('templates/auth_header',$data);
@@ -170,7 +170,7 @@ class Auth extends CI_Controller
 		];
 
 		$this->email->initialize($config);
-		$this->email->from('bdinternship7@gmail.com','Bandung Design');
+		$this->email->from('bdinternship7@gmail.com','Pt. Pacifa Raya Technology');
 		$this->email->to($this->input->post('email'));
 		
 		if ($type=='verify') {
@@ -198,7 +198,7 @@ class Auth extends CI_Controller
 
   <h2 style="text-align: center;
   font-family: arial;
-  padding: 8px 14px;"><b>Bandung Design</b></h2>
+  padding: 8px 14px;"><b>Pt. Pacifa Raya Technology</b></h2>
   <p style="text-align: left;
   font-family: arial;
   padding: 8px 14px;">The account will be activated as soon as you press the activate button down below !!! </p>
@@ -214,16 +214,6 @@ class Auth extends CI_Controller
   font-size: 18px;" id="gfg" onMouseOver="mouseover()"
    onMouseOut="mouseout()">Activate</a></p>
 </div>
-
-<script> 
-            function mouseover() { 
-                document.getElementById("gfg").style.color = "blue"; 
-            } 
-              
-            function mouseout() { 
-                document.getElementById("gfg").style.color = "white"; 
-            } 
-</script> 
 </body>
 </html>	');
 		}
