@@ -13,16 +13,6 @@ class Participant extends CI_Controller
 		$this->load->helper(array('form', 'url', 'download'));
 	}
 
-	public function tglaw_rules($tanggal_mulai)
-	{
-		if ($tanggal_mulai < date('d-m-Y')) {
-			$this->form_validation->set_message('tglaw_rules', 'This {field} field must be filled');
-			return FALSE;
-		} else {
-			return TRUE;
-		}
-	}
-
 
 	public function index()
 	{
@@ -145,7 +135,7 @@ class Participant extends CI_Controller
 		$data_divisi =
 			$this->db->query('SELECT * FROM ketentuan where id=' . $id_divisi)->row();
 		$current_kouta = $data_divisi->qta;
-		$sisa_kouta = $current_kouta + 1;
+		$sisa_kouta = $current_kouta - 1;
 		if ($current_kouta > 0) {
 			$isi_kouta = array
 			(
@@ -173,6 +163,7 @@ class Participant extends CI_Controller
 
 	}
 
+	//Email penerimaan
 	private function _sendEmail($id)
 	{
 		$this->load->model('M_Participant', 'participant');
@@ -241,6 +232,7 @@ class Participant extends CI_Controller
 
 	}
 
+	//Email penolakan
 	private function _sendEmail2($id)
 	{
 		$this->load->model('M_Participant', 'participant');

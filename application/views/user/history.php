@@ -44,7 +44,17 @@
 								<td><?php echo $ps["divisi"]; ?></td>
 								<td><?php echo $ps["tanggal_mulai"]; ?></td>
 								<td><?php echo $ps["tanggal_akhir"]; ?></td>
-								<td></td>
+								<?php if ($ps["status"] == 0): ?>
+									<td><?php echo("Diskualifikasi"); ?></td>
+								<?php elseif ($ps["status"] == 2): ?>
+									<td>
+										<?php echo("Ditolak"); ?>
+									</td>
+								<?php else: ?>
+									<td>
+										<?php echo("Selesai"); ?>
+									</td>
+								<?php endif ?>
 							</tr>
 						<?php else: ?>
 							<?php if ($ps["email"] == $user["email"]): ?>
@@ -57,14 +67,14 @@
 									<td><?php echo $ps["tanggal_mulai"]; ?></td>
 									<td><?php echo $ps["tanggal_akhir"]; ?></td>
 									<?php if ($ps["status"] == 0): ?>
-										<td><?php echo("Menunggu persetujuan"); ?></td>
+										<td><?php echo("Diskualifikasi"); ?></td>
 									<?php elseif ($ps["status"] == 2): ?>
 										<td>
 											<?php echo("Ditolak"); ?>
 										</td>
 									<?php else: ?>
 										<td>
-											<?php echo("Diterima"); ?>
+											<?php echo("Selesai"); ?>
 										</td>
 									<?php endif ?>
 								</tr>

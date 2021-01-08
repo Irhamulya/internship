@@ -341,21 +341,6 @@ class User extends CI_Controller
 		$data['peserta']=$this->user->getdivisi();
 		$data['divisi']=$this->db->get('ketentuan')->result_array();
 		$id_divisi=$this->db->get_where('peserta', 'id_div');
-
-		/**
-		if () {
-		$isi_kouta=array
-		(
-		"qta"          => $kouta_baru
-		);
-		$this->db->where('id='.$id_divisi);
-		$this->db->update("ketentuan",$isi_kouta);
-		$this->User_model->hapus($id);
-		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Berhasil di Hapus!</div>');
-		redirect('user/peserta');
-		}
-		 */
-
 		$this->User_model->hapus($id);
 		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Berhasil di Hapus!</div>');
 		redirect('user/peserta');
