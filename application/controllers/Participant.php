@@ -145,7 +145,7 @@ class Participant extends CI_Controller
 		$data_divisi =
 			$this->db->query('SELECT * FROM ketentuan where id=' . $id_divisi)->row();
 		$current_kouta = $data_divisi->qta;
-		$sisa_kouta = $current_kouta - 1;
+		$sisa_kouta = $current_kouta + 1;
 		if ($current_kouta > 0) {
 			$isi_kouta = array
 			(
@@ -180,8 +180,8 @@ class Participant extends CI_Controller
 		$config = [
 			'protocol' => 'smtp',
 			'smtp_host' => 'ssl://smtp.googlemail.com',
-			'smtp_user' => 'pcrinternship7@gmail.com',
-			'smtp_pass' => '121099asd',
+			'smtp_user' => 'testbaruing@gmail.com',
+			'smtp_pass' => '123testinG',
 			'smtp_port' => 465,
 			'mailtype' => 'html',
 			'charset' => 'utf-8',
@@ -189,7 +189,7 @@ class Participant extends CI_Controller
 		];
 
 		$this->email->initialize($config);
-		$this->email->from('pcrinternship7@gmail.com', 'Pt. Pacifa Raya Technology');
+		$this->email->from('testbaruing@gmail.com', 'Pt. Pacifa Raya Technology');
 		$this->email->to($d['email']);
 		$this->email->subject('Congratulations !!');
 		$this->email->message('<!DOCTYPE html>
@@ -248,8 +248,8 @@ class Participant extends CI_Controller
 		$config = [
 			'protocol' => 'smtp',
 			'smtp_host' => 'ssl://smtp.googlemail.com',
-			'smtp_user' => 'pcrinternship7@gmail.com',
-			'smtp_pass' => '121099asd',
+			'smtp_user' => 'testbaruing@gmail.com',
+			'smtp_pass' => '123testinG',
 			'smtp_port' => 465,
 			'mailtype' => 'html',
 			'charset' => 'utf-8',
@@ -257,7 +257,7 @@ class Participant extends CI_Controller
 		];
 
 		$this->email->initialize($config);
-		$this->email->from('pcrinternship7@gmail.com', 'Pt. Pacifa Raya Technology');
+		$this->email->from('testbaruing@gmail.com', 'Pt. Pacifa Raya Technology');
 		$this->email->to($d['email']);
 		$this->email->subject('Informations !!');
 		$this->email->message('<!DOCTYPE html>
@@ -286,7 +286,7 @@ class Participant extends CI_Controller
 			  padding: 8px 14px;"><b>Pt. Pacifa Raya Technology Info</b></h2>
 			  <p style="text-align: left;
 			  font-family: arial;
-			  padding: 8px 14px;">Sorry you not you are not the choosen one for intern in Pt. Pacifa Raya Technology !!! </p>
+			  padding: 8px 14px;">Sorry you not you are not the choosen one for the intern position in Pt. Pacifa Raya Technology !!! </p>
 			  <p style="
 			  left: 0;
 			  bottom: 1;
