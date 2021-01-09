@@ -32,22 +32,20 @@ class Admin extends CI_Controller
 		$data['title'] = 'Division page';
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-		$this->load->model('User_model', 'user');
 
-		$data['peserta'] = $this->user->getdivisi();
 		$data['divisi'] = $this->db->get('ketentuan')->result_array();
 
 		$this->form_validation->set_rules('divisi', 'Divisi', 'required');
-		$this->form_validation->set_rules('quantity', 'Quantity', 'required');
+		$this->form_validation->set_rules('kouta', 'Kouta', 'required');
 
 		if ($this->form_validation->run() == true) {
 			$divisi = $this->input->post("divisi");
-			$quantity = $this->input->post("Quantity");
+			$qta = $this->input->post("kouta");
 
 			$isi = array
 			(
 				"divisi" => $divisi,
-				"qta" => $quantity
+				"qta" => $qta
 
 			);
 			$this->db->insert("ketentuan", $isi);
@@ -63,6 +61,53 @@ class Admin extends CI_Controller
 		}
 	}
 
+	public function editdivisi($id)
+	{
+		$data['title']= 'Edit Division';
+		$data['user']=$this->db->get_where('user',['email'=>$this->session->userdata('email')])->row_array();
+		$data['divisi']=$this->db->get('ketentuan')->result_array();
+		$data['data']= $this->User_model->tampil($id);
+
+		$this->form_validation->set_rules('nama','Nama Lengkap','required');
+		$this->form_validation->set_rules('divisi','Divisi','required');
+		$this->form_validation->set_rules('alamat','Alamat','required');
+		$this->form_validation->set_rules('sekolah','Sekolah','required');
+		$this->form_validation->set_rules('tanggal_mulai','Tanggal Mulai','required');
+		$this->form_validation->set_rules('tanggal_akhir','Tanggal Akhir','required');
+
+		if ($this->form_validation->run()==true) {
+
+			$id_divisi  	=$this->input->post("divisi");
+			$nama       	=$this->input->post("nama");
+			$alamat     	=$this->input->post("alamat");
+			$sekolah    	=$this->input->post("sekolah");
+			$tanggal_mulai	=$this->input->post('tanggal_mulai');
+			$tanggal_akhir	=$this->input->post('tanggal_akhir');
+
+			$isi=array
+			(
+				"id_div"        	=>$id_divisi,
+				"nama"      		=>$nama,
+				"alamat"    		=>$alamat,
+				"sekolah"   		=>$sekolah,
+				"tanggal_mulai"     =>$tanggal_mulai,
+				"tanggal_akhir"     =>$tanggal_akhir,
+
+			);
+			$this->db->where('id', $id)->update('peserta', $isi);
+			$this->session->set_flashdata('message','<div class="alert alert-success" role="alert">New Data has been updated dude!</div>');
+			redirect('user/peserta');
+
+
+		}else{
+
+			$this->load->view('templates/header' , $data);
+			$this->load->view('templates/sidebar' , $data);
+			$this->load->view('templates/topbar' , $data);
+			$this->load->view('user/editpeserta', $data);
+			$this->load->view('templates/footer' );
+		}
+	}
 
 	public function role()
 	{

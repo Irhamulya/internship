@@ -24,8 +24,9 @@
 				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 					<thead>
 					<tr>
-						<th style="vertical-align: middle;">Nama</th>
-						<th style="vertical-align: middle;">Email</th>
+						<th >Division</th>
+						<th >Kuota</th>
+						<th >Config</th>
 					</tr>
 					</thead>
 					<tbody>
@@ -36,10 +37,10 @@
 							<td><?php echo $d["divisi"]; ?></td>
 							<td><?php echo $d["qta"]; ?></td>
 							<td>
-								<a href="<?= base_url(); ?>user/editpeserta/<?= $d["id"]; ?>" class="badge"
+								<a href="<?= base_url(); ?>admin/editdivisi/<?= $d["id"]; ?>" class="badge"
 								   style=" color:white;  background-color:#FF8C00;"><i
 											class="far fa-fw fa-edit"></i></a>
-								<a href="<?= base_url(); ?>user/hapuspeserta/<?= $d["id"]; ?>"
+								<a href="<?= base_url(); ?>admin/hapusdivisi/<?= $d["id"]; ?>"
 								   class="badge badge-danger" onclick="return confirm('Yakin?');"><i
 											class="fas fa-fw fa-trash-alt"></i>
 								</a>
@@ -61,3 +62,36 @@
 </div>
 <!-- End of Main Content -->
 <!-- Button trigger modal -->
+
+<!-- Modal -->
+
+<div class="modal fade" id="MagangModal" tabindex="-1" role="dialog" aria-labelledby="MenuModalLabel"
+	 aria-hidden="true">
+	<div class="modal-dialog ">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="MagangModalLabel">Add Division</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+
+			<?php echo form_open_multipart('admin/divisi'); ?>
+			<div class="modal-body">
+				<div class="form-group">
+					<label for="divisi">Division</label>
+					<input type="text" required class="form-control" id="divisi" name="divisi" placeholder="Division">
+				</div>
+				<div class="form-group">
+					<label for="kouta">Kouta</label>
+					<input type="number" class="form-control" required id="kouta" name="kouta" placeholder="Kouta">
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-primary">Add</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
+			<?php form_close(); ?>
+		</div>
+	</div>
+</div>
