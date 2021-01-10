@@ -32,11 +32,14 @@
         						
         						<td><?php echo $m["menu"]; ?></td>
         						<td>
-                      <a href="" class="badge" data-toggle="modal" data-target="#EditMenuModal" style="color:white;  background-color:#FF8C00;">
-                        <i class="far fa-fw fa-edit"></i>
+                      <a  
+                          href="javascript:;"
+                          data-id="<?php echo $m['id'] ?>"
+                          data-nama="<?php echo $m['menu'] ?>"
+                          data-toggle="modal" data-target="#edit-data" class="badge badge-warning">
+                         <i class="fas fa-fw fa-edit"></i>
                       </a>
-
-                      <a href="" class="badge badge-danger"><i class="fas fa-fw fa-trash-alt"></i></a>
+                      <a href="" class="badge badge-danger"><i class="fas fa-fw fa-trash-alt"></i></a >
                     </td>
         					</tr>
 
@@ -59,6 +62,7 @@
 <!-- Button trigger modal -->
 
 <!-- Modal -->
+      <?php echo form_open_multipart('menu'); ?>
 <div class="modal fade" id="MenuModal" tabindex="-1" role="dialog" aria-labelledby="MenuModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -68,7 +72,6 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-	      <form action="<?= base_url('menu') ?>"method="post">
 	      <div class="modal-body">
 	         <div class="form-group">
 			    <input type="text" class="form-control" id="menu" name="menu" placeholder="Menu Name">
@@ -78,37 +81,38 @@
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 	        <button type="submit" class="btn btn-primary">Add</button>
 	     	</div>
-	      </form>
+	      
      </div>
-  </div>
+  </div>  
 </div>
-
-<!-- Edit Modal -->
-
-<div class="modal fade" id="EditMenuModal" tabindex="-1" role="dialog" aria-labelledby="EditMenuModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="EditMenuModalLabel">Edit Menu</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <?php foreach ($data1 as $array) :?>
-        <?php echo form_open('menu/edit'.$array->id); ?>
-        <form action="<?= base_url('menu/ubah') ?>"method="post">
-        <div class="modal-body">
-           <div class="form-group">
-          <input type="text" class="form-control" id="menu" name="menu" value="<?php echo $array->menu ?>">
-       </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          <button type="submit" class="btn btn-primary">Save</button>
-        </div>
-        </form>
         <?php echo form_close(); ?>
-      <?php endforeach; ?>
-     </div>
-  </div>
+
+<!-- Modal Ubah -->
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="edit-data" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Ubah Data</h4>
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+            </div>
+            <form class="form-horizontal" action="<?php echo base_url('menu/edit')?>" method="post" enctype="multipart/form-data" role="form">
+             <div class="modal-body">
+                     <div class="form-group">
+                         <label class="col-lg-2 col-sm-2 control-label">Menu</label>
+                         <div class="col-lg-10">
+                          <input type="hidden" id="id" name="id">
+                             <input type="text" class="form-control" id="menu" name="menu" placeholder="Tuliskan menu">
+                         </div>
+                     </div>
+                                   
+                 </div>
+                 <div class="modal-footer">
+                     <button class="btn btn-info" type="submit"> Simpan&nbsp;</button>
+                     <button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
+                 </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
+<!-- END Modal Ubah -->

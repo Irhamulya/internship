@@ -25,12 +25,13 @@
 					<div class="form-group">
 						<label for="divisi">Divisi</label>
 						<input type="text" class="form-control" id="divisi" name="divisi" placeholder="Divisi"
-							   value="<?= $data['divisi']; ?>">
+							   value="<?= $tampil['divisi']; ?>">
 					</div>
-
 					<div class="form-group">
-						<label for="kuota">Alamat</label>
-						<textarea name="kuota" id="kuota" class="form-control" placeholder="Kouta" rows="4" cols="50" value=""><?= $data['qta']; ?></textarea>
+						<label for="kouta">Sekolah</label>
+						<input type="number" class="form-control" id="kouta" name="kouta" placeholder="Kouta"
+							   value="<?= $tampil['qta']; ?>">
+						<br>
 					</div>
 
 					<div class="form-group row justify-content-end">

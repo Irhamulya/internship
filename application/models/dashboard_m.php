@@ -37,5 +37,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			    }   
 		    }
 
+	   
+	    public function hapus($id)
+	    	{
+	    	$this->db->get_where('ketentuan', ['id' => $id])->row_array();
+	        $this->db->where('id', $id);
+	        $this->db->delete('ketentuan');
+	    	}
+
 	}
 ?>

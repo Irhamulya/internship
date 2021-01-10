@@ -32,6 +32,29 @@ class Menu extends CI_Controller
 					redirect('menu');
 		}
 	}
+	//edit
+		public function edit($id)
+		{
+			$data['user']=$this->db->get_where('user',['email'=>$this->session->userdata('email')])->row_array();
+			$menu = $this->form_validation->set_rules('menu','Menu','required');
+			$this->load->model('Menu_model','menu');
+    		
+			if ($this->form_validation->run()==true) 
+			{			
+				
+		        $id = $this->input->post('id', true);
+		        $menu = $this->input->post('menu', true);
+		        $data = array(
+				        	'menu'  => $this->input->post('menu')
+					    );
+		    	$this->Menu_model->ubah($data,$id);	
+		    	$this->session->set_flashdata('message','<div class="alert alert-success" role="alert">New Data has been updated dude!</div>');
+				redirect('menu');
+			}
+			$data["data1"] = $this->Menu_model->pilih($id);
+			$this->load->view('menu/index',$data);
+		}
+
 	public function SubMenu(){
 			$data['title']= 'Sub Menu Management';
 			$data['user']=$this->db->get_where('user',['email'=>
@@ -66,20 +89,9 @@ class Menu extends CI_Controller
 					redirect('menu');
 			}
 	}
+	
 
-		//edit
-		public function edit($id)
-		{
-			$this->load->model('Menu_model');
-			if($this->input->post("edit")==true)
-			{
-				$this->load->model('Menu_model');
-				$this->Menu_model->edit();
-				redirect('menu');
-			}
-			$data["data1"] = $this->Menu_model->pilih($id);
-			$this->load->view('menu/index',$data);
-		}
+		
 
 		//ejet hapus
 		public function hapus($id)

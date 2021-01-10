@@ -61,42 +61,29 @@ class Admin extends CI_Controller
 		}
 	}
 
-	public function editdivisi($id)
+	public function Editdivisi($id)
 	{
-		$data['title']= 'Edit Division';
+		$data['title']= 'Edit Peserta';
 		$data['user']=$this->db->get_where('user',['email'=>$this->session->userdata('email')])->row_array();
-		$data['divisi']=$this->db->get('ketentuan')->result_array();
-		$data['data']= $this->User_model->tampil($id);
+		
+		$data['tampil']= $this->db->get_where('ketentuan', ['id' => $id])->row_array();
 
-		$this->form_validation->set_rules('nama','Nama Lengkap','required');
 		$this->form_validation->set_rules('divisi','Divisi','required');
-		$this->form_validation->set_rules('alamat','Alamat','required');
-		$this->form_validation->set_rules('sekolah','Sekolah','required');
-		$this->form_validation->set_rules('tanggal_mulai','Tanggal Mulai','required');
-		$this->form_validation->set_rules('tanggal_akhir','Tanggal Akhir','required');
-
+		$this->form_validation->set_rules('kouta','Kouta','required');
+		
 		if ($this->form_validation->run()==true) {
 
-			$id_divisi  	=$this->input->post("divisi");
-			$nama       	=$this->input->post("nama");
-			$alamat     	=$this->input->post("alamat");
-			$sekolah    	=$this->input->post("sekolah");
-			$tanggal_mulai	=$this->input->post('tanggal_mulai');
-			$tanggal_akhir	=$this->input->post('tanggal_akhir');
+			$divisi  	=$this->input->post("divisi");
+			$kouta       	=$this->input->post("kouta");	
 
 			$isi=array
 			(
-				"id_div"        	=>$id_divisi,
-				"nama"      		=>$nama,
-				"alamat"    		=>$alamat,
-				"sekolah"   		=>$sekolah,
-				"tanggal_mulai"     =>$tanggal_mulai,
-				"tanggal_akhir"     =>$tanggal_akhir,
-
+				"divisi"        	=>$divisi,
+				"qta"      		=>$kouta				
 			);
-			$this->db->where('id', $id)->update('peserta', $isi);
+			$this->db->where('id', $id)->update('ketentuan', $isi);
 			$this->session->set_flashdata('message','<div class="alert alert-success" role="alert">New Data has been updated dude!</div>');
-			redirect('user/peserta');
+			redirect('admin/divisi');
 
 
 		}else{
@@ -104,9 +91,19 @@ class Admin extends CI_Controller
 			$this->load->view('templates/header' , $data);
 			$this->load->view('templates/sidebar' , $data);
 			$this->load->view('templates/topbar' , $data);
-			$this->load->view('user/editpeserta', $data);
+			$this->load->view('admin/editdivisi', $data);
 			$this->load->view('templates/footer' );
 		}
+	}
+
+	public function hapusdivisi($id)
+	{
+		$this->load->model('dashboard_m');
+
+		$this->dashboard_m->hapus($id);
+		
+		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Berhasil di Hapus!</div>');
+		redirect('admin/divisi');
 	}
 
 	public function role()

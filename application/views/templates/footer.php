@@ -75,7 +75,18 @@
 
 
 <script>
+	//edit
+	$(document).ready(function() {
+         // Untuk sunting
+         $('#edit-data').on('show.bs.modal', function (event) {
+             var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
+             var modal          = $(this)
 
+             // Isi nilai pada field
+             modal.find('#id').attr("value",div.data('id'));
+             modal.find('#menu').attr("value",div.data('menu'));
+         });
+     });
 	//Choose file
 	$('.custom-file-input').on('change', function () {
 		let fileName = $(this).val().split('\\').pop();
@@ -120,7 +131,6 @@
 	//end of Role Acces ajax
 
 </script>
-
 </body>
 
 </html>

@@ -13,7 +13,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					
 			return $this->db->query($query)->result_array();
 		}
-
+		public function ubah($data, $id){
+		    $this->db->where('id',$id);
+		    $this->db->update('menu', $data);
+		    return TRUE;
+		}
+		public function hapus($id)
+    	{
+	    	$this->db->where('menu.id', $id);
+    	    return $this->db->delete('menu');
+    	}
+    	public function tampilsm($id)
+    	{
+    	   return $this->db->get_where('submenu', ['id' => $id])->row_array();
+		}
+		public function hapussm($id)
+    	{
+	    	$this->db->where('submenu.id', $id);
+	        return $this->db->delete('submenu');
+    	}
 
 	}
 
