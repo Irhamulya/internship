@@ -23,12 +23,7 @@
 				<div class="modal-body">
 
 					<div class="form-group">
-						<label for="divisi">Divisi</label>
-						<input type="text" class="form-control" id="divisi" name="divisi" placeholder="Divisi"
-							   value="<?= $tampil['divisi']; ?>">
-					</div>
-					<div class="form-group">
-						<label for="kouta">Kouta/label>
+						<label for="kouta">Menu</label>
 						<input type="number" class="form-control" id="kouta" name="kouta" placeholder="Kouta"
 							   value="<?= $tampil['qta']; ?>">
 						<br>
