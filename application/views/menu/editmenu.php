@@ -20,12 +20,12 @@
 
 			<form action="" method="post">
 
-				<div class="modal-body">
+				<div class="modal-body modal-md ">
 
 					<div class="form-group">
-						<label for="kouta">Menu</label>
-						<input type="number" class="form-control" id="kouta" name="kouta" placeholder="Kouta"
-							   value="<?= $tampil['qta']; ?>">
+						<label for="menu">Menu</label>
+						<input type="text" class="form-control" id="menu" name="menu" placeholder="Menu"
+							   value="<?= $tampil['menu']; ?>">
 						<br>
 					</div>
 

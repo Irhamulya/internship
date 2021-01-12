@@ -11,21 +11,23 @@
 					<!-- Nested Row within Card Body -->
 
 					<div class="row">
-						<div class="col-lg-6 d-none d-lg-block bg-login"><img
-									src="<?= base_url('asset/img/login') ?>/722.jpg" style="width:105%; " alt=""></div>
+						<div class="col-lg-6 d-none d-lg-block bg-login">
+							<img src="<?= base_url('asset/img/login') ?>/722.jpg" style="width: 105%; " alt="">
+						</div>
 						<div class="col-lg-6 ">
 							<div class="col">
-								<div class="text-right ml-2 mt-2 "><a href="" data-toggle="modal"
-																	  data-target="#modalkun"><h5><i
-													class="fas fa-info-circle"></i></h5></a></div>
+								<div class="text-right ml-2 mt-2 ">
+									<a href="" data-toggle="modal"data-target="#modalkun">
+										<h5><i class="fas fa-info-circle"></i></h5>
+									</a>
+								</div>
 							</div>
 							<div class="p-5">
 								<div class="text-center mb-5">
-									<img src="<?= base_url('asset/img') ?>/BD_logo.jpg"
-										 style="width: 220px;position: relative;top: 20px;" alt="">
+									<img src="<?= base_url('asset/img') ?>/BD_logo.jpg" style="width: 220px; position: relative;top: 20px;" alt="">
 								</div>
 								<?= $this->session->flashdata('message'); ?>
-								<form class="user " method="post" action="<?= base_url('auth ') ?>">
+								<form class="user " method="post" action="<?= base_url('auth') ?>">
 									<div class="form-group pt-1 mb-2">
 										<input type="text" class="form-control form-control-user" id="email"
 											   name="email" placeholder="Enter Email Address..."

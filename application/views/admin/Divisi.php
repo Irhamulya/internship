@@ -24,9 +24,9 @@
 				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 					<thead>
 					<tr>
-						<th >Division</th>
-						<th >Kuota</th>
-						<th >Config</th>
+						<th>Division</th>
+						<th>Kuota</th>
+						<th>Config</th>
 					</tr>
 					</thead>
 					<tbody>

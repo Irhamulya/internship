@@ -63,36 +63,36 @@ class Admin extends CI_Controller
 
 	public function Editdivisi($id)
 	{
-		$data['title']= 'Edit Peserta';
-		$data['user']=$this->db->get_where('user',['email'=>$this->session->userdata('email')])->row_array();
-		
-		$data['tampil']= $this->db->get_where('ketentuan', ['id' => $id])->row_array();
+		$data['title'] = 'Edit Divisi';
+		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-		$this->form_validation->set_rules('divisi','Divisi','required');
-		$this->form_validation->set_rules('kouta','Kouta','required');
-		
-		if ($this->form_validation->run()==true) {
+		$data['tampil'] = $this->db->get_where('ketentuan', ['id' => $id])->row_array();
 
-			$divisi  	=$this->input->post("divisi");
-			$kouta       	=$this->input->post("kouta");	
+		$this->form_validation->set_rules('divisi', 'Divisi', 'required');
+		$this->form_validation->set_rules('kouta', 'Kouta', 'required');
 
-			$isi=array
+		if ($this->form_validation->run() == true) {
+
+			$divisi = $this->input->post("divisi");
+			$kouta = $this->input->post("kouta");
+
+			$isi = array
 			(
-				"divisi"        	=>$divisi,
-				"qta"      		=>$kouta				
+				"divisi" => $divisi,
+				"qta" => $kouta
 			);
 			$this->db->where('id', $id)->update('ketentuan', $isi);
-			$this->session->set_flashdata('message','<div class="alert alert-success" role="alert">New Data has been updated dude!</div>');
+			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">New Data has been updated dude!</div>');
 			redirect('admin/divisi');
 
 
-		}else{
+		} else {
 
-			$this->load->view('templates/header' , $data);
-			$this->load->view('templates/sidebar' , $data);
-			$this->load->view('templates/topbar' , $data);
+			$this->load->view('templates/header', $data);
+			$this->load->view('templates/sidebar', $data);
+			$this->load->view('templates/topbar', $data);
 			$this->load->view('admin/editdivisi', $data);
-			$this->load->view('templates/footer' );
+			$this->load->view('templates/footer');
 		}
 	}
 
@@ -101,7 +101,7 @@ class Admin extends CI_Controller
 		$this->load->model('dashboard_m');
 
 		$this->dashboard_m->hapus($id);
-		
+
 		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Berhasil di Hapus!</div>');
 		redirect('admin/divisi');
 	}

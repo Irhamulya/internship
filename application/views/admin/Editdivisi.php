@@ -28,7 +28,7 @@
 							   value="<?= $tampil['divisi']; ?>">
 					</div>
 					<div class="form-group">
-						<label for="kouta">Kouta/label>
+						<label for="kouta">Kouta</label>
 						<input type="number" class="form-control" id="kouta" name="kouta" placeholder="Kouta"
 							   value="<?= $tampil['qta']; ?>">
 						<br>

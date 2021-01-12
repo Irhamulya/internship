@@ -1,46 +1,47 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 
-	Class User_Model extends CI_Model
+class User_Model extends CI_Model
+{
+
+	public function getDivisi()
 	{
-		
-		public function getDivisi()
-		{
-			$query="SELECT peserta.*,ketentuan.divisi
+		$query = "SELECT peserta.*,ketentuan.divisi
 					FROM peserta JOIN ketentuan
 					ON peserta.id_div=ketentuan.id";
-					
-			return $this->db->query($query)->result_array();
-		}
-		public function getDiv3()
-		{
-			$query="SELECT history.*,ketentuan.divisi 
+
+		return $this->db->query($query)->result_array();
+	}
+
+	public function getDiv3()
+	{
+		$query = "SELECT history.*,ketentuan.divisi 
 					FROM history JOIN ketentuan 
 					ON history.id_div=ketentuan.id";
-					
-			return $this->db->query($query)->result_array();
-		}
+
+		return $this->db->query($query)->result_array();
+	}
 
 
-		public function tampil($id)
-    	{
-    	   $query	="SELECT peserta.*,ketentuan.divisi
+	public function tampil($id)
+	{
+		$query = "SELECT peserta.*,ketentuan.divisi
 					FROM peserta JOIN ketentuan
 					ON peserta.id_div=ketentuan.id
 					WHERE peserta.id=$id";
-					
-			return $this->db->query($query)->row_array();
-		}
-    	public function hapus($id)
-    	{
-    	$this->db->get_where('ketentuan', ['id' => $id])->row_array();
-        $this->db->where('id', $id);
-        $this->db->delete('ketentuan');
-    	}
 
+		return $this->db->query($query)->row_array();
 	}
 
-	
+	public function hapus($id)
+	{
+		$this->db->get_where('ketentuan', ['id' => $id])->row_array();
+		$this->db->where('id', $id);
+		$this->db->delete('ketentuan');
+	}
+
+}
+
 
 ?>
