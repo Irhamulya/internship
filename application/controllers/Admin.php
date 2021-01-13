@@ -116,6 +116,8 @@ class Admin extends CI_Controller
 
 		$this->form_validation->set_rules('work_in', 'Jam Masuk', 'required');
 		$this->form_validation->set_rules('work_out', 'Jam Keluar', 'required');
+		$this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
+		
 		
 		if ($this->form_validation->run() == true) {
 			$work_in = $this->input->post("work_in");
@@ -151,6 +153,7 @@ class Admin extends CI_Controller
 
 		$this->form_validation->set_rules('work_in', 'Jam Masuk', 'required');
 		$this->form_validation->set_rules('work_out', 'Jam Keluar', 'required');
+		$this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
 		
 
 		if ($this->form_validation->run() == true) {

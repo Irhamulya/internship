@@ -177,8 +177,14 @@ class User extends CI_Controller
 		$data['title'] = 'Attendance page';
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 		$user=$this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+		$internship = $this->db->get('peserta')->result_array();
+		
+		
 		$this->load->model('User_model', 'user');
 
+		if () {
+			# code...
+		}
 		
         $user_id = $user['id'];
         $date = date("Y-m-d"); //2020-12-28
