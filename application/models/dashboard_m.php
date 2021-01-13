@@ -43,6 +43,12 @@ class Dashboard_m extends CI_Model
 		$this->db->where('id', $id);
 		$this->db->delete('ketentuan');
 	}
+	public function hapuswt($id)
+	{
+		$this->db->get_where('worktime', ['id' => $id])->row_array();
+		$this->db->where('id', $id);
+		$this->db->delete('worktime');
+	}
 
 }
 

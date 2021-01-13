@@ -176,8 +176,14 @@ class User extends CI_Controller
 	public function absen(){
 		$data['title'] = 'Attendance page';
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-
+		$user=$this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 		$this->load->model('User_model', 'user');
+
+		
+        $user_id = $user['id'];
+        $date = date("Y-m-d"); //2020-12-28
+        $time = date("H:i:s");  //16:15:20
+        $note = $this->input->post("note");
 
 		$data['absensi'] = $this->db->get('absensi')->result_array();
 			$this->load->view('templates/header', $data);

@@ -12,7 +12,7 @@
 
 					<div class="row">
 						<div class="col-lg-6 d-none d-lg-block bg-login">
-							<img src="<?= base_url('asset/img/login') ?>/722.jpg" style="width: 105%; " alt="">
+							<img src="<?= base_url('asset/img/login') ?>/722.jpg" style="width: 105%; bottom: 50px; "alt="">
 						</div>
 						<div class="col-lg-6 ">
 							<div class="col">
@@ -45,11 +45,12 @@
 											Login
 										</button>
 									</div>
-								</form>
+								</form>	
 								<hr>
 								<div class="text-center">
-									<a class="small" href="<?= base_url('auth/regist') ?>"><h6>Create an Account !
-											!</h6></a>
+									<a class="small" href="<?= base_url('auth/regist') ?>">
+										<h6>Create an Account !!</h6>
+									</a>
 								</div>
 							</div>
 						</div>
