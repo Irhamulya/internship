@@ -181,10 +181,10 @@ class User extends CI_Controller
 		
 		
 		$this->load->model('User_model', 'user');
-
-		if () {
-			# code...
-		}
+//
+//		if () {
+//			# code...
+//		}
 		
         $user_id = $user['id'];
         $date = date("Y-m-d"); //2020-12-28

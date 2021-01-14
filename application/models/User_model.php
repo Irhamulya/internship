@@ -24,6 +24,17 @@ class User_Model extends CI_Model
 	}
 
 
+	public function absen()
+	{
+		$query = "SELECT absen.*,peserta.email 
+					FROM absen JOIN peserta 
+					ON absen.user_email=peserta.email";
+
+		return $this->db->query($query)->result_array();
+	}
+
+
+
 	public function tampil($id)
 	{
 		$query = "SELECT peserta.*,ketentuan.divisi

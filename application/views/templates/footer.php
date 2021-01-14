@@ -77,16 +77,23 @@
 <script>
 	//edit
 	$(document).ready(function() {
-         // Untuk sunting
-         $('#edit-data').on('show.bs.modal', function (event) {
-             var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
-             var modal          = $(this)
+        
+		//Register Date validator
+		var dt = new Date();
+		dt.setDate(dt.getDate() + 7);
+		var dayaf = dt.toISOString().split('T')[0];
+		document.getElementsByName("tanggal_mulai")[0].setAttribute('min', dayaf);
 
-             // Isi nilai pada field
-             modal.find('#id').attr("value",div.data('id'));
-             modal.find('#menu').attr("value",div.data('menu'));
-         });
+		$("#tanggal_mulai").change(function(e) {
+			var de = new Date($('#tanggal_mulai').val());
+			de.setDate(de.getDate() + 7);
+			var dayen = de.toISOString().split('T')[0];
+			document.getElementsByName("tanggal_akhir")[0].setAttribute('min', dayen);
+		});
+		//end of Date validator
+
      });
+
 	//Choose file
 	$('.custom-file-input').on('change', function () {
 		let fileName = $(this).val().split('\\').pop();
@@ -94,21 +101,6 @@
 
 	});
 	//end of Choose file
-
-	//Register Date validator
-	var dt = new Date();
-	dt.setDate(dt.getDate() + 7);
-	var dayaf = dt.toISOString().split('T')[0];
-
-	document.getElementsByName("tanggal_mulai")[0].setAttribute('min', dayaf);
-
-	$("#tanggal_mulai").change(function(e) {
-		var de = new Date($('#tanggal_mulai').val());
-		de.setDate(de.getDate() + 7);
-		var dayen = de.toISOString().split('T')[0];
-		document.getElementsByName("tanggal_akhir")[0].setAttribute('min', dayen);
-	});
-	//end of Data validator
 
 	//Role Acces ajax
 	$('.form-check-input').on('click', function () {
