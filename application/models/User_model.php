@@ -26,9 +26,9 @@ class User_Model extends CI_Model
 
 	public function absen()
 	{
-		$query = "SELECT absen.*,peserta.email 
-					FROM absen JOIN peserta 
-					ON absen.user_email=peserta.email";
+		$query = "SELECT peserta.*,user.id 
+					FROM peserta JOIN user 
+					ON peserta.email=user.email";
 
 		return $this->db->query($query)->result_array();
 	}
@@ -47,9 +47,9 @@ class User_Model extends CI_Model
 
 	public function hapus($id)
 	{
-		$this->db->get_where('ketentuan', ['id' => $id])->row_array();
+		$this->db->get_where('peserta', ['id' => $id])->row_array();
 		$this->db->where('id', $id);
-		$this->db->delete('ketentuan');
+		$this->db->delete('peserta');
 	}
 
 }

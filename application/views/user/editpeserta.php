@@ -51,13 +51,13 @@
 						<input type="text" class="form-control" id="sekolah" name="sekolah" placeholder="Sekolah"
 							   value="<?= $data['sekolah']; ?>">
 						<br>
-						<a href="" class="btn btn-primary btn-sm" target="_blank">Tambah Sekolah</a>
+						<a href="" class="btn btn-sm" style="background: #00CFE8; color: white;" target="_blank">Tambah Sekolah</a>
 					</div>
 
 					<div class="form-group">
 						<label for="tanggal_mulai">Tanggal Mulai</label>
 						<input type="date" class="form-control" id="tanggal_mulai" name="tanggal_mulai"
-							   value="<?= $data['tanggal_mulai']; ?>" readonly>
+							   value="<?= $data['tanggal_mulai']; ?>">
 					</div>
 
 					<div class="form-group">
@@ -70,11 +70,11 @@
 					<div class="form-group row justify-content-end">
 						<div class="col-sm-1">
 							<br/>
-							<button type="submit" class="btn btn-primary">Save</button>
+							<button type="submit" class="btn"style="background: #00CFE8; color: white;" >Save</button>
 						</div>
 						<div class="col-sm-2">
 							<br/>
-							<button type="button" class="btn btn-secondary">Cancel</button>
+							<button type="button" onClick="location.href='<?php echo base_url();?>user/peserta'" class="btn btn-secondary">Cancel</button>
 						</div>
 					</div>
 

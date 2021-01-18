@@ -12,7 +12,7 @@
 				      role="alert">', '</div>'); ?>
 			<?= $this->session->flashdata('message'); ?>
 
-			<a href="" class="btn mb-2" style=" color:white;  background-color:#4169E1;" data-toggle="modal"
+			<a href="" class="btn mb-2" style="background: #00CFE8; color: white;" data-toggle="modal"
 			   data-target="#RoleModal">Add Role</a>
 
 		</div>
@@ -77,7 +77,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button type="submit" class="btn btn-primary">Add</button>
+					<button type="submit" class="btn"style="background: #00CFE8;">Add</button>
 				</div>
 			</form>
 		</div>
@@ -103,7 +103,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button type="submit" class="btn btn-primary">Add</button>
+					<button type="submit" class="btn"style="background: #00CFE8;">Add</button>
 				</div>
 			</form>
 		</div>

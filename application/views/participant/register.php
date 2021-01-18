@@ -14,7 +14,7 @@
 			<?php endif; ?>
 			<?= $this->session->flashdata('message'); ?>
 
-			<a href="" class="btn mb-2" style=" color:white;  background-color:#4169E1;" data-toggle="modal"
+			<a href="" class="btn mb-2" style="background: #00CFE8; color: white;" data-toggle="modal"
 			   data-target="#MagangModal">Add data</a>
 
 		</div>
@@ -147,7 +147,7 @@
 				<div class="form-group">
 					<label for="tanggal_mulai">Tanggal Mulai</label>
 					<input class="form-control" type="date" id="tanggal_mulai" name="tanggal_mulai" required>
-				</div>
+				</div>	
 				<div class="form-group">
 					<label for="tanggal_akhir">Tanggal Berakhir</label>
 					<input type="date" class="form-control" id="tanggal_akhir" name="tanggal_akhir" required>
@@ -156,7 +156,7 @@
 			</div>
 
 			<div class="modal-footer">
-				<button type="submit" class="btn btn-primary">Add</button>
+				<button type="submit" class="btn" style="background: #00CFE8; color: white;">Add</button>
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 			</div>
 			<?php form_close(); ?>

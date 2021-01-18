@@ -39,11 +39,11 @@
 					<div class="form-group row justify-content-end">
 						<div class="col-sm-1">
 							<br/>
-							<button type="submit" class="btn btn-primary">Save</button>
+							<button type="submit" class="btn" style="background: #00CFE8; color: white;">Save</button>
 						</div>
 						<div class="col-sm-2">
 							<br/>
-							<button type="button" class="btn btn-secondary">Cancel</button>
+							<button type="button" onClick="location.href='<?php echo base_url();?>admin/worktime'" class="btn btn-secondary">Cancel</button>
 						</div>
 					</div>
 

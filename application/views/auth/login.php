@@ -12,19 +12,19 @@
 
 					<div class="row">
 						<div class="col-lg-6 d-none d-lg-block bg-login">
-							<img src="<?= base_url('asset/img/login') ?>/722.jpg" style="width: 105%; bottom: 50px; "alt="">
+							<img src="<?= base_url('asset/img/login') ?>/internship-logo.jpg" style="width: 105%; bottom: 50px; "alt="">
 						</div>
 						<div class="col-lg-6 ">
 							<div class="col">
 								<div class="text-right ml-2 mt-2 ">
 									<a href="" data-toggle="modal"data-target="#modalkun">
-										<h5><i class="fas fa-info-circle"></i></h5>
+										<h5><i class="fas fa-info-circle" style="color:#00CFE8;"></i></h5>
 									</a>
 								</div>
 							</div>
 							<div class="p-5">
 								<div class="text-center mb-5">
-									<img src="<?= base_url('asset/img') ?>/BD_logo.jpg" style="width: 220px; position: relative;top: 20px;" alt="">
+									<img src="<?= base_url('asset/img/login')?>/perlupos-color.png" style="width: 80%; position: relative;" alt="">
 								</div>
 								<?= $this->session->flashdata('message'); ?>
 								<form class="user " method="post" action="<?= base_url('auth') ?>">
@@ -41,7 +41,7 @@
 									</div>
 									<div class="form-group pt-1">
 										<button type="submit" class="btn btn btn-user btn-block"
-												style="background-color:#4169E1; color: white;">
+												style="background-color:#00CFE8; color: white;">
 											Login
 										</button>
 									</div>
@@ -49,7 +49,7 @@
 								<hr>
 								<div class="text-center">
 									<a class="small" href="<?= base_url('auth/regist') ?>">
-										<h6>Create an Account !!</h6>
+										<h6 style="color: #00CFE8;">Create an Account !!</h6>
 									</a>
 								</div>
 							</div>
@@ -69,24 +69,23 @@
 		 aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
-				<div class="modal-header" style="background-color: royalblue; color: white;">
+				<div class="modal-header" style="background-color:#00CFE8 ; color: white;">
 					<h5 class="modal-title" id="modalkun">Info</h5>
 					<button type="button" class="close" data-dismiss="modal" style="color: white;" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-body">
-					<h2 style="text-align: center;"><b>Bandung Design</b></h2>
+					<h2 style="text-align: center;"><b>Pacifica Raya Technology</b></h2>
 					<h5><b>Introduction</b></h5>
-					<p>This website was create to simplify the interns for their internship programs on Pacifa Raya
-						Technology</p>
+					<p>This is was an internship website that provide </p>
 					<h5><b>Quota</b></h5>
 					<table>
 						<tr>
 							<?php foreach ($divisi as $ps) : ?>
 								<td>
 									<div class="col-xl-12 col-md-3 mb-4">
-										<div class="card border-left-info shadow h-100 py-2"
+										<div class="card border-left-primary shadow h-100 py-2"
 											 style="background:<?= $ps["warna"]; ?> ;">
 											<div class="card-body">
 												<div class="row no-gutters align-items-center">
@@ -115,7 +114,6 @@
 	</div>
 	<script src="<?= base_url() ?>Asset/jquery.js"></script>
 	<script>
-
 		$(document).ready(function () {
 			$(window).on('load', function () {
 				$('#modalkun').modal('show');

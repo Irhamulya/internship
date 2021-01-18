@@ -79,26 +79,33 @@
 	$(document).ready(function() {
      
 		//Register Date validator
-		var dt = new Date();
-		dt.setDate(dt.getDate() + 7);
+		var dt = new Date($('#tanggal_mulai').val());
+		dt.setDate(dt.getDate() + 0);
 		var dayaf = dt.toISOString().split('T')[0];
 		document.getElementsByName("tanggal_mulai")[0].setAttribute('min', dayaf);
-		document.getElementById("tanggal_akhir").disabled = true;
-
-		if ($("#tanggal_mulai").change(function(e){})) {
-			$("#tanggal_mulai").change(function(e){
-			document.getElementById("tanggal_akhir").disabled = false;
-			var de = new Date($('#tanggal_mulai').val());
-			de.setDate(de.getDate() + 7);
-			var dayen = de.toISOString().split('T')[0];
-			document.getElementsByName("tanggal_akhir")[0].setAttribute('min', dayen);
-			});
-		}
+		
+		var de = new Date($('#tanggal_mulai').val());
+		de.setDate(de.getDate() + 7);
+		var dayen = de.toISOString().split('T')[0];
+		document.getElementsByName("tanggal_akhir")[0].setAttribute('min', dayen);		
 
 		//end of Date validator
 		
 		
-     });
+     });	
+
+	//button disabled
+	$(document).ready(function() {
+     
+		var dt = new Date();
+		var de = new Date($('#tanggal_mulai2').val());
+        $('#btnIn').prop('disabled', true);
+		    
+            
+        if (dt<de) {
+            $("#btnIn").prop('disabled', false);
+		}
+	}
 
 	//Choose file
 	$('.custom-file-input').on('change', function () {

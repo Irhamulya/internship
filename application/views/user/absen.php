@@ -16,22 +16,37 @@
 
 			 <form action="/absen" method="post">
                             <table class="table table-responsive">
-                               
+                               <?php foreach ($peserta as $p) : ?>
+                               	<?php if ($p['email'] ==$user['email'] ): ?>
                                 <tr>
                                     <td>
-                                        <input type="text" placeholder="Keterangan..." name="note" class="form-control">
+                                        <input type="text" placeholder="Keterangan..." name="note" class="form-control" >
                                     </td>
+                                	<td>
+                                		<input type="text" name="tanggal_mulai2" id="tanggal_mulai2"  value="<?= $p['tanggal_mulai']; ?>" readonly class="form-control">
+                                	</td>
+                                	<?php if (date("Y-m-d")<$p['tanggal_mulai']){?>
                                     <td>
-                                        <button type="submit" class="btn btn-flat btn-primary" name="btnIn"
-                                                value="btnIn" {{ $info['btnIn'] }}>Absen Masuk
+                                        <button type="submit" class="btn btn-flat" style="background: #00CFE8; color: white;" name="btnIn" id="btnIn" disabled="" value="btnIn">Absen Masuk
                                         </button>
                                     </td>
                                     <td>
-                                        <button type="submit" class="btn btn-flat btn-primary" name="btnOut"
-                                                value="btnOut" {{ $info['btnOut'] }} >Absen Keluar
+                                        <button type="submit" class="btn btn-flat" style="background: #00CFE8; color: white;" name="btnOut" id="btnOut" disabled=""	 value="btnOut">Absen Keluar
                                         </button>
                                     </td>
+                                    <?php }else{?>
+                                    <td>
+                                        <button type="submit" class="btn btn-flat" style="background: #00CFE8; color: white;" name="btnIn" id="btnIn"  value="btnIn">Absen Masuk
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button type="submit" class="btn btn-flat" style="background: #00CFE8; color: white;" name="btnOut" id="btnOut" value="btnOut">Absen Keluar
+                                        </button>
+                                    </td>
+                                	<?php } ?>
                                 </tr>
+                            <?php endif ; ?>
+                            <?php endforeach ; ?>
                             </table>
                         </form>
 

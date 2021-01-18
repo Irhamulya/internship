@@ -14,14 +14,14 @@
 			<?php endif; ?>
 			<?= $this->session->flashdata('message'); ?>
 
-			<a href="" class="btn mb-2" style=" color:white;  background-color:#4169E1;" data-toggle="modal"
+			<a href="" class="btn mb-2" style=" color:white;  background: #00CFE8;" data-toggle="modal"
 			   data-target="#MagangModal">Add data</a>
 
 		</div>
 		<div class="card-body">
 
-			<div class="table-responsive">
-				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+			<div class="table-responsive" >
+				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
 					<thead>
 					<tr>
 						<th>Division</th>
@@ -88,7 +88,7 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="submit" class="btn btn-primary">Add</button>
+				<button type="submit" class="btn btn-info">Add</button>
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 			</div>
 			<?php form_close(); ?>

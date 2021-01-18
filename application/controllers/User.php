@@ -176,27 +176,27 @@ class User extends CI_Controller
 	public function absen(){
 		$data['title'] = 'Attendance page';
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-		$user=$this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-		$internship = $this->db->get('peserta')->result_array();
-		
-		
-		$this->load->model('User_model', 'user');
-//
-//		if () {
-//			# code...
-//		}
-		
-        $user_id = $user['id'];
-        $date = date("Y-m-d"); //2020-12-28
-        $time = date("H:i:s");  //16:15:20
-        $note = $this->input->post("note");
-
 		$data['absensi'] = $this->db->get('absensi')->result_array();
+		$data['peserta'] = $this->db->get('peserta')->result_array();
+		
+
+		$user=$this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+		$tanggal_mulai=$this->input->post("tanggal_mulai");
+		
+		
+		//$user_id = $user['id'];
+       	//$date = date("Y-m-d"); //2020-12-28
+        //$time = date("H:i:s");  //16:15:20
+        //$note = $this->input->post("note");
+		//if () {
+		//# code...
+		//}
+
 			$this->load->view('templates/header', $data);
 			$this->load->view('templates/sidebar', $data);
 			$this->load->view('templates/topbar', $data);
 			$this->load->view('user/absen', $data);
-			$this->load->view('templates/footer');
+			$this->load->view('templates/footer2');
 	}
 
 	public function edit()
@@ -342,7 +342,7 @@ class User extends CI_Controller
 			$this->load->view('templates/sidebar', $data);
 			$this->load->view('templates/topbar', $data);
 			$this->load->view('user/editpeserta', $data);
-			$this->load->view('templates/footer');
+			$this->load->view('templates/footer2');
 		}
 	}
 
