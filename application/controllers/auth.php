@@ -109,7 +109,7 @@ class Auth extends CI_Controller
 		(
 			'password1',
 			'Password',
-			'required|trim|min_length[3]|matches[password2]',
+			'required|trim|min_length[6]|matches[password2]',
 			['matches' => 'Password doesnot match!', 'min_length' => 'Password too short']
 		);
 		$this->form_validation->set_rules

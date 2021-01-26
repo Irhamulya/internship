@@ -29,11 +29,10 @@
 					</div>
 
 					<div class="form-group">
-						<label for="divisi">Divisi</label>
-						<select name="divisi" id="divisi" class="form-control">
-							<option disabled="disabled" value="<?= $data['id_div']; ?>"><?= $data['divisi']; ?></option>
+						<label for="divisi2">Divisi</label>
+						<select name="divisi2" class="form-control">
 							<?php foreach ($divisi as $d): ?>
-								<option value="<?= $data['id_div']; ?>">
+								<option value="<?= $data['id_div']; ?>" <?= $data['id_div']==$d['id'] ? "selected":null; ?>>
 									<?= $d['divisi']; ?>
 								</option>
 							<?php endforeach; ?>
@@ -42,8 +41,7 @@
 
 					<div class="form-group">
 						<label for="alamat">Alamat</label>
-						<textarea name="alamat" id="alamat" class="form-control" placeholder="Alamat" rows="4" cols="50"
-								  value=""><?= $data['alamat']; ?></textarea>
+						<textarea name="alamat" id="alamat" class="form-control" placeholder="Alamat" rows="4" cols="50" value=""><?= $data['alamat']; ?></textarea>
 					</div>
 
 					<div class="form-group">

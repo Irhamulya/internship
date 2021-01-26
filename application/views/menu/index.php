@@ -33,10 +33,8 @@
         						<td><?php echo $m["menu"]; ?></td>
         						<td>
                       <a href="<?= base_url(); ?>menu/edit/<?= $m["id"]; ?>" class="badge" style=" color:white;  background-color:#FF8C00;"><i class="far fa-fw fa-edit"></i></a>
-                      <a href="<?= base_url(); ?>menu/hapus/<?= $m["id"]; ?>"
-                   class="badge badge-danger" onclick="return confirm('Yakin?');"><i
-                      class="fas fa-fw fa-trash-alt"></i>
-                </a>
+                      <a href="<?= base_url(); ?>menu/hapus/<?= $m["id"]; ?>"class="badge badge-danger" onclick="return confirm('Yakin?');"> <i class="fas fa-fw fa-trash-alt"></i>
+                      </a>
                     </td>
         					</tr>
 

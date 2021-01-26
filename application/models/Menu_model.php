@@ -30,7 +30,12 @@ class Menu_Model extends CI_Model
 
 	public function tampil($id)
 	{
-		return $this->db->get_where('submenu', ['id' => $id])->row_array();
+		$query = "SELECT user_sub_menu.*,user_menu.menu
+					FROM user_sub_menu JOIN user_menu
+					ON user_sub_menu.menu_id=user_menu.id
+					WHERE user_sub_menu.id=$id";
+
+		return $this->db->query($query)->row_array();
 	}
 
 	public function hapussm($id)

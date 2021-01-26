@@ -43,7 +43,7 @@
 						</div>
 						<div class="col-sm-2">
 							<br/>
-							<button type="button" onClick="location.href='<?php echo base_url();?>admin/worktime'" class="btn btn-secondary">Cancel</button>
+							<button type="button" onClick="location.href='<?php echo base_url();?>operational/worktime'" class="btn btn-secondary">Cancel</button>
 						</div>
 					</div>
 

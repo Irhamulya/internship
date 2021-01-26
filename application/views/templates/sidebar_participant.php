@@ -8,7 +8,7 @@
 <ul  class="navbar-nav bg-gradient-info sidebar sidebar-white accordion" id="accordionSidebar">
 
 	<!-- Sidebar - Brand -->
-	<a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('user') ?>">
+	<a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('home') ?>">
 		<div class="sidebar-brand-icon">
 			<i class="fas fa-building text-white"></i>
 			<!-- <img src="<?= base_url('asset/img/BD_logo.png'); ?>"width="90%"> -->
@@ -27,13 +27,15 @@
                           FROM user_menu JOIN user_access 
                           ON user_menu.id = user_access.menu_id 
                           WHERE user_access.role_id = $role_id
-                          ORDER BY user_access.menu_id ASC ";
-
+                          ORDER BY user_access.menu_id DESC ";
+    
 	$menu = $this->db->query($queryMenu)->result_array();
 	?>
 
 	<!-- Looping -->
 	<?php foreach ($menu as $m):?>
+	<?php if ($m['id']!=6): ?>
+		
 		<div class="sidebar-heading"style="color:#fff;">
 			<?= $m['menu']; ?>      </div>
 
@@ -63,6 +65,7 @@
 
 		<hr class="sidebar-divider mt-3" style="background-color:#fff;">
 
+	<?php endif; ?>
 	<?php endforeach ;?>
 
 

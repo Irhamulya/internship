@@ -97,7 +97,6 @@
 
 		//end of Date validator
 		
-		
      });
 
 	//Choose file

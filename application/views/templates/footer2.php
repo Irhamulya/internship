@@ -94,18 +94,6 @@
 		
      });	
 
-	//button disabled
-	$(document).ready(function() {
-     
-		var dt = new Date();
-		var de = new Date($('#tanggal_mulai2').val());
-        $('#btnIn').prop('disabled', true);
-		    
-            
-        if (dt<de) {
-            $("#btnIn").prop('disabled', false);
-		}
-	}
 
 	//Choose file
 	$('.custom-file-input').on('change', function () {

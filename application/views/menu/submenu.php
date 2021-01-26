@@ -42,9 +42,11 @@
 							<td><?php echo $sm["icon"]; ?></td>
 							<td><?php echo $sm["is_active"]; ?></td>
 							<td>
-								<a href="" class="badge" style=" color:white;  background-color:#FF8C00;"><i
-											class="far fa-fw fa-edit"></i></a>
-								<a href="" class="badge badge-danger"><i class="fas fa-fw fa-trash-alt"></i></a>
+								<a href="<?= base_url(); ?>menu/editsubmenu/<?= $sm["id"]; ?>" class="badge" style="color:white;  background-color:#FF8C00;">
+									<i class="far fa-fw fa-edit"></i></a>
+			                    <a href="<?= base_url(); ?>menu/hapussubmenu/<?= $sm["id"]; ?>"class="badge badge-danger" onclick="return confirm('Yakin?');"> 
+			                    	<i class="fas fa-fw fa-trash-alt"></i>
+                      			</a>
 							</td>
 						</tr>
 
