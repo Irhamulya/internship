@@ -11,6 +11,7 @@ class User extends CI_Controller
 		$this->load->model('User_model');
 		cek_login();
 
+
 	}
 
 	public function index()
@@ -174,22 +175,92 @@ class User extends CI_Controller
 	}
 
 	public function absen(){
+		date_default_timezone_set('Asia/Jakarta');
 		$data['title'] = 'Attendance page';
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 		$data['absensi'] = $this->db->get('absensi')->result_array();
 		$data['peserta'] = $this->db->get('peserta')->result_array();
+		$data['jamkerja'] = $this->db->get('worktime')->result_array();
 		
 
 		$user=$this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-		$tanggal_mulai=$this->input->post("tanggal_mulai");
 		
+		$this->load->view('templates/header', $data);
+		$this->load->view('templates/sidebar', $data);
+		$this->load->view('templates/topbar', $data);
+		$this->load->view('user/absen', $data);
+		$this->load->view('templates/footer');
+	}
+
+	public function absenmasuk(){
+		date_default_timezone_set('Asia/Jakarta');
+		$data['title'] = 'Attendance page';
+		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+		$data['absensi'] = $this->db->get('absensi')->result_array();
+		$data['peserta'] = $this->db->get('peserta')->result_array();
+		$data['jamkerja'] = $this->db->get('worktime')->result_array();
+
+		$user=$this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+		$date = date("Y-m-d");
+		$time = date("H:i:s");
+		$jammasuk=$this->input->post("jamkerja");
+		$user_email=$user['email'];
+		
+		$tanggal_mulai=$this->input->post("tanggal_mulai");
+
+		$cek_double =  $this->db->get_where('absensi',['date' => $date, 'user_email' => $user_email])->num_rows();
+		$note = $this->input->post("note");
+        
+        if ($cek_double>0) {
+
+        	$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Anda telah melakukan absensi hari ini!</div>');
+		        redirect('user/absen');
+        }
+        	$isi = array
+			(	
+				"user_email" => $user_email,
+				"date" => $date,
+				"time_in" => $time,
+				"overdue" => 2,
+				"note" => $note
+			);
+			$this->db->insert("absensi", $isi);
+			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Anda terlambat!</div>');
+				redirect('user/absen');
+	}
+
+	public function absenkeluar(){
+		date_default_timezone_set('Asia/Jakarta');
+		$data['title'] = 'Attendance page';
+		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+		$data['absensi'] = $this->db->get('absensi')->result_array();
+		$data['peserta'] = $this->db->get('peserta')->result_array();
+		$data['jamkerja'] = $this->db->get('worktime')->result_array();
+
+		$user=$this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+		$tanggal_mulai=$this->input->post("tanggal_mulai");
+
+		$date = date("Y-m-d");
+		$time = date("H:i:s");
+		$note = $this->input->post("note");
+		$jammasuk=$this->input->post("jamkerja");
+		$user_email=$user['email'];
 
 
-			$this->load->view('templates/header', $data);
-			$this->load->view('templates/sidebar', $data);
-			$this->load->view('templates/topbar', $data);
-			$this->load->view('user/absen', $data);
-			$this->load->view('templates/footer');
+        $cek_absen = $this->db->get_where('absensi',['user_email' => $user_email, 'date' => $date])->row_array();
+
+       	if ($cek_absen['note'] != null) {
+            $this->db->get_where('absensi',['date' => $date, 'user_email' => $user_email]);
+            $updat=array("time_out" => $time);
+            $this->db->update('absensi',$updat);
+            redirect('user/absen');
+        } elseif ($cek_absen['note'] == null) {
+            $this->db->get_where('absensi',['date' => $date, 'user_email' => $user_email]);
+            $updat=array("time_out" => $time);
+            $this->db->update('absensi',$updat);
+            redirect('user/absen');
+        }
 	}
 
 	public function edit()
@@ -247,9 +318,7 @@ class User extends CI_Controller
 
 		}
 
-
 	}
-
 
 	public function changepass()
 	{
@@ -258,7 +327,6 @@ class User extends CI_Controller
 		$this->form_validation->set_rules('current_pass', 'Current Password', 'required|trim');
 		$this->form_validation->set_rules('new_pass', 'New Password', 'required|trim|min_length[3]|matches[new_pass2]');
 		$this->form_validation->set_rules('new_pass2', 'Confirm Password', 'required|trim|min_length[3]|matches[new_pass]');
-
 
 		if ($this->form_validation->run() == false) {
 			$this->load->view('templates/header', $data);
@@ -306,7 +374,6 @@ class User extends CI_Controller
 		$this->form_validation->set_rules('tanggal_akhir', 'Tanggal Akhir', 'required');
 
 		if ($this->form_validation->run() == true) {
-
 			
 			$isi = array
 			(
@@ -346,6 +413,5 @@ class User extends CI_Controller
 		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Berhasil di Hapus!</div>');
 		redirect('user/peserta');
 	}
-
 
 }

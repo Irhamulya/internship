@@ -83,10 +83,11 @@
 					<table>
 						<tr>
 							<?php foreach ($divisi as $ps) : ?>
-								<td>
+							<td>
+								<?php if ($ps['id']==1||$ps['id']==2): ?>
 									<div class="col-xl-12 col-md-3 mb-4">
 										<div class="card border-left-primary shadow h-100 py-2"
-											 style="background:<?= $ps["warna"]; ?> ;">
+											 style="background:<?= $ps["warna"]; ?>">
 											<div class="card-body">
 												<div class="row no-gutters align-items-center">
 													<div class="col mr-2">
@@ -104,7 +105,9 @@
 											</div>
 										</div>
 									</div>
-								</td>
+
+								<?php endif ?>
+							</td>
 							<?php endforeach; ?>
 						</tr>
 					</table>

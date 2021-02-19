@@ -19,7 +19,6 @@ class Participant extends CI_Controller
 		$data['title'] = 'Profile';
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar_participant', $data);
 		$this->load->view('templates/topbar_participant', $data);
@@ -27,7 +26,7 @@ class Participant extends CI_Controller
 		$this->load->view('templates/footer');
 	}
 
-	public function register()
+	public function application()
 	{
 		$data['title'] = 'Registration Page';
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
@@ -37,13 +36,19 @@ class Participant extends CI_Controller
 		$data['peserta'] = $this->participant->getdiv();
 		$data['peserta2'] = $this->participant->getdiv2();
 		$data['divisi'] = $this->db->get('ketentuan')->result_array();
-
+		$data['sekolah'] = $this->db->get('sekolah')->result_array();
 
 		$this->form_validation->set_rules('nama', 'Nama Lengkap', 'required');
 		$this->form_validation->set_rules('divisi', 'Divisi', 'required');
 		$this->form_validation->set_rules('alamat', 'Alamat', 'required');
 		$this->form_validation->set_rules('sekolah', 'Sekolah', 'required');
 		$this->form_validation->set_rules('tanggal_mulai', 'Tanggal Mulai', 'required');
+
+		$user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+		$tanggal_mulai = $this->input->post("tanggal_mulai");
+
+		$user_email = $user['email'];
+		$cek_double = $this->db->get_where('peserta', ['email' => $user_email])->num_rows();
 
 		if ($this->form_validation->run() == true) {
 			$id_divisi = $this->input->post("divisi");
@@ -53,8 +58,11 @@ class Participant extends CI_Controller
 			$sekolah = $this->input->post("sekolah");
 			$tanggal_mulai = $this->input->post('tanggal_mulai');
 			$tanggal_akhir = $this->input->post('tanggal_akhir');
+			if ($cek_double > 0) {
+				$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Anda tidak bisa melakukan pendaftaran, karena anda telah terdaftar sebagai peserta magang!!</div>');
+				redirect('participant/application');
+			}
 
-//
 			$isi = array
 			(
 				"id_div" => $id_divisi,
@@ -65,28 +73,64 @@ class Participant extends CI_Controller
 				"tanggal_mulai" => $tanggal_mulai,
 				"tanggal_akhir" => $tanggal_akhir,
 				"status" => 0
-
 			);
 			$this->db->insert("pendaftar", $isi);
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">New Data has been added dude!</div>');
-			redirect('participant/register');
-
+			redirect('participant/application');
 
 		} else {
 
 			$this->load->view('templates/header', $data);
 			$this->load->view('templates/sidebar_participant', $data);
 			$this->load->view('templates/topbar_participant', $data);
-			$this->load->view('participant/register', $data);
+			$this->load->view('participant/application', $data);
 			$this->load->view('templates/footer');
 		}
 	}
 
-	public function lakukan_download()
+	public function sekolah()
 	{
-		force_download('./asset/doc/SURAT PERNYATAAN BD.docx', NULL);
+		$data['title'] = 'School page';
+		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+		$data['sekolah'] = $this->db->get('sekolah')->result_array();
+
+		$this->form_validation->set_rules('sekolah', 'Sekolah','required|trim|is_unique[sekolah.sekolah]', ['is_unique' => 'Sekolah ini sudah terdaftar']);
+		$this->form_validation->set_rules('alamat', 'Alamat', 'required');
+		$sekolah=$this->db->get('sekolah')->result_array();
+
+		if ($this->form_validation->run() == true) {
+			$alamat = $this->input->post("alamat");
+			$user=$this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+			$user_email=$user['email'];
+			$isi = array
+			(
+				"user_email"=>$user_email,
+               	"sekolah" => htmlspecialchars($this->input->post('sekolah', true)),
+				"alamat" => $alamat
+
+			);
+			$this->db->insert("sekolah", $isi);
+			$this->session->set_flashdata('message', ' < div class="alert alert-success" role = "alert" > new Data has been added dude!</div > ');
+			redirect('participant/sekolah');
+		} else {
+
+			$this->load->view('templates/header', $data);
+			$this->load->view('templates/sidebar', $data);
+			$this->load->view('templates/topbar', $data);
+			$this->load->view('participant/sekolah', $data);
+			$this->load->view('templates/footer');
+		}
 	}
 
+	public function lakukan_download1()
+	{
+		force_download('./asset/doc/SURAT PERNYATAAN.docx', NULL);
+	}
+	public function lakukan_download2()
+	{
+		force_download('./asset/doc/SURAT PERNYATAAN.pdf', NULL);
+	}
 	public function tolakpeserta($id)
 	{
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
@@ -98,42 +142,43 @@ class Participant extends CI_Controller
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
 		$this->load->view('templates/topbar', $data);
-		$this->load->view('participant/register', $data);
+		$this->load->view('participant/application', $data);
 		$this->load->view('templates/footer');
 		$this->_sendEmail2($id);
-		$this->db->set('status', 2);
+		$this->db->set('status', 0);
 		$this->db->where('id', $id);
 		$this->db->update('pendaftar');
 		$this->db->insert("history", $this->participant->tampil($id));
 		$this->hapuspeserta($id);
 
-		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data has been updated</div>');
-		redirect('participant/register');
+		$this->session->set_flashdata('message', ' < div class="alert alert-success" role = "alert" > Data has been updated </div > ');
+		redirect('participant/application');
 
 	}
 
-	public function pindahpeserta($id)
+public function pindahpeserta($id)
 	{
 
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-		$this->load->model('M_Participant', 'participant');
+		$this->load->model('M_Participant', 'application');
 
-		$data['peserta'] = $this->participant->getdiv();
+		$data['peserta'] = $this->application->getdiv();
+		
+		$d = $this->application->tampil($id);
+		$id_divisi = $d['id_div'];
+		$id = $d['id'];
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
 		$this->load->view('templates/topbar', $data);
-		$this->load->view('participant/register', $data);
+		$this->load->view('participant/application', $data);
 		$this->load->view('templates/footer');
 
 		$this->_sendEmail($id);
-		$d = $this->participant->tampil($id);
-		$id_divisi = $d['id_div'];
-		$id = $d['id'];
 
 		$data_divisi =
-			$this->db->query('SELECT * FROM ketentuan where id=' . $id_divisi)->row();
+			$this->db->query('SELECT * FROM ketentuan where id = ' . $id_divisi)->row();
 		$current_kouta = $data_divisi->qta;
 		$sisa_kouta = $current_kouta - 1;
 		if ($current_kouta > 0) {
@@ -141,27 +186,28 @@ class Participant extends CI_Controller
 			(
 				"qta" => $sisa_kouta
 			);
-			$this->db->where('id=' . $id_divisi);
+			$this->db->where('id = ' . $id_divisi);
 			$this->db->update("ketentuan", $isi_kouta);
 
 		} elseif ($current_kouta == 0) {
-			$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Sorry qouta has execeed the limit!</div>');
-			redirect('participant/register');
+			$this->session->set_flashdata('message', ' < div class="alert alert-danger" role = "alert" > Sorry qouta has execeed the limit!</div > ');
+			redirect('participant/application');
 
 
 		}
-		$this->db->set('status', 1);
+		$this->db->set('status', 2);
 		$this->db->where('id', $id);
 		$this->db->update('pendaftar');
-		$this->db->insert("peserta", $this->participant->tampil($id));
+		$this->db->insert("peserta", $this->application->tampil($id));
 
 		$this->hapuspeserta($id);
 
-		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data has been updated</div>');
-		redirect('participant/register');
+		$this->session->set_flashdata('message', ' < div class="alert alert-success" role = "alert" > Data has been updated </div > ');
+		redirect('participant/application');
 
 
 	}
+
 
 	//Email penerimaan
 	private function _sendEmail($id)
@@ -178,6 +224,7 @@ class Participant extends CI_Controller
 			'charset' => 'utf-8',
 			'newline' => "\r\n"
 		];
+		//$pesan=$this->input->post('pesan');
 
 		$this->email->initialize($config);
 		$this->email->from('testbaruing@gmail.com', 'Pt. Pacifa Raya Technology');
@@ -196,7 +243,7 @@ class Participant extends CI_Controller
 			  margin: auto;
 			  font-family: arial;">
 			<div class="topnav" style="overflow: hidden;
-			  background-color: #4169E1;"><p style="float: left;
+			  background-color: #36B9CC;"><p style="float: left;
 			  display: block;
 			  color: white;
 			  text-align: center;
@@ -209,17 +256,17 @@ class Participant extends CI_Controller
 			  padding: 8px 14px;"><b>Pt. Pacifa Raya Technology Info</b></h2>
 			  <p style="text-align: left;
 			  font-family: arial;
-			  padding: 8px 14px;">Congratulations !!! from now you are part of the intern in Pt. Pacifa Raya Technology !!! </p>
-			  <p>Please download the response letter : <a href="' . base_url() . '/participant/lakukan_download">Surat Balasan.docx</a></p>
+			  padding: 8px 14px;">'.$pesan.'</p>
+			  <p>Please download the response letter : <a href="'.base_url().'/participant/lakukan_download1">Surat Balasan.docx</a></p>
+			  <p>Please download the response letter : <a href="'.base_url().'/participant/lakukan_download2">Surat Peraturan.pdf</a></p>
 			  <p style="
 			  left: 0;
 			  bottom: 1;
 			  width: 100%;
-			  background-color: grey;
+			  background-color: #227985;
 			  color: white;
 			  text-align: center;">PacifaRayaTechnology</p>
 			</div>
-
 			</body>
 			</html>	');
 		if ($this->email->send()) {
@@ -265,7 +312,7 @@ class Participant extends CI_Controller
 			  margin: auto;
 			  font-family: arial;">
 			<div class="topnav" style="overflow: hidden;
-			  background-color: #4169E1;"><p style="float: left;
+			  background-color: #36B9CC;"><p style="float: left;
 			  display: block;
 			  color: white;
 			  text-align: center;
@@ -278,12 +325,12 @@ class Participant extends CI_Controller
 			  padding: 8px 14px;"><b>Pt. Pacifa Raya Technology Info</b></h2>
 			  <p style="text-align: left;
 			  font-family: arial;
-			  padding: 8px 14px;">Sorry you not you are not the choosen one for the intern position in Pt. Pacifa Raya Technology !!! </p>
+			  padding: 8px 14px;">We were sorry, you are not the choosen one for the internship position !!! </p>
 			  <p style="
 			  left: 0;
 			  bottom: 1;
 			  width: 100%;
-			  background-color: grey;
+			  background-color: #227985;
 			  color: white;
 			  text-align: center;">PacifaRayaTechnology</p>
 			</div>
@@ -304,7 +351,7 @@ class Participant extends CI_Controller
 	{
 		$this->load->model('M_Participant', 'participant');
 		$this->participant->hapus($id);
-		redirect('participant/register');
+		redirect('participant/application');
 	}
 
 	public function edit()
@@ -342,7 +389,7 @@ class Participant extends CI_Controller
 				if ($this->upload->do_upload('image')) {
 					$old_image = $data['user']['image'];
 					if ($old_image != 'default.jpg') {
-						unlink(FCPATH . 'asset/img/profile/' . $old_image);
+						unlink(FCPATH.'asset/img/profile/'.$old_image);
 					}
 
 					$new_image = $this->upload->data('file_name');

@@ -72,7 +72,23 @@
 
 
 <script src="<?= base_url('asset/'); ?>js/bootstrap-datepicker.js"></script>
-
+<script>     
+$(function() {
+    $('#colorpicker-full').colorpicker({
+        showOn:         'both',
+        showNoneButton: true,
+        showCloseButton: true,
+        showCancelButton: true,
+        colorFormat: ['#HEX'],
+        position: {
+		   my: 'center',
+		   at: 'center',
+		   of: window
+		  },
+	   modal: true
+    });
+}); 
+</script>>
 
 <script>
 	//edit

@@ -12,7 +12,14 @@ class M_Participant extends CI_Model
 
 		return $this->db->query($query)->result_array();
 	}
+	public function getSch()
+	{
+		$query = "SELECT pendaftar.*,sekolah.sekolah 
+					FROM pendaftar JOIN sekolah 
+					ON pendaftar.sekolah=sekolah.id";
 
+		return $this->db->query($query)->result_array();
+	}
 	public function getDiv2()
 	{
 		$query = "SELECT peserta.*,ketentuan.divisi 

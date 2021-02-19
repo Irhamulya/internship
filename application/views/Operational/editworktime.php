@@ -33,7 +33,7 @@
 					</div>
 					<div class="form-group">
 						<label for="description">Keterangan</label>
-						<input type="text" class="form-control" required id="description" name="description" placeholder="Keterangan" value="<?= $tampil['description']; ?>">
+						<input type="text" class="form-control" id="description" name="description" placeholder="Keterangan" value="<?= $tampil['description'];?>">
 					</div>
 
 					<div class="form-group row justify-content-end">

@@ -66,9 +66,9 @@ class Auth extends CI_Controller
 					];
 					$this->session->set_userdata($data);
 					if ($user['role_id'] == 1) {
-						redirect('admin');
+						redirect('home');
 					} else {
-						redirect('participant');
+						redirect('home');
 					}
 
 				} else {
@@ -136,9 +136,7 @@ class Auth extends CI_Controller
 					'is_active' => 0,
 					'date_created' => time()
 				];
-
 			//token
-
 			$token = base64_encode(random_bytes(32));
 			$user_token = [
 				'email' => $email,
@@ -162,8 +160,8 @@ class Auth extends CI_Controller
 		$config = [
 			'protocol' => 'smtp',
 			'smtp_host' => 'ssl://smtp.googlemail.com',
-			'smtp_user' => 'bdinternship7@gmail.com',
-			'smtp_pass' => '121099asd',
+			'smtp_user' => 'testbaruing@gmail.com',
+			'smtp_pass' => '123testinG',
 			'smtp_port' => 465,
 			'mailtype' => 'html',
 			'charset' => 'utf-8',
@@ -189,14 +187,13 @@ class Auth extends CI_Controller
   margin: auto;
   font-family: arial;">
 <div class="topnav" style="overflow: hidden;
-  background-color: #4169E1;"><p style="float: left;
+  background-color: #36B9CC;"><p style="float: left;
   display: block;
   color: white;
   text-align: center;
   padding: 1px 10px;
   text-decoration: none;
   font-size: 17px;">Vertification email</p></div>
-
   <h2 style="text-align: center;
   font-family: arial;
   padding: 8px 14px;"><b>Pt. Pacifa Raya Technology</b></h2>
@@ -208,7 +205,7 @@ class Auth extends CI_Controller
   display: inline-block;
   padding: 8px;
   color: white;
-  background-color: #000;
+  background-color: #227985;
   text-align: center;
   cursor: pointer;
   width: 97%;
@@ -239,7 +236,7 @@ class Auth extends CI_Controller
 			$user_token = $this->db->get_where('user_token', ['token' => $token])->row_array();
 			if ($user_token) {
 				if (time() - $user_token['date_created'] < (60 * 60 * 24)) {
-					$this->db->set('is_active', 1);
+					$this->db->set('is_active', 4);
 					$this->db->where('email', $email);
 					$this->db->update('user');
 
@@ -272,5 +269,4 @@ class Auth extends CI_Controller
 		$this->load->view('auth/blocked', $data);
 
 	}
-
 }

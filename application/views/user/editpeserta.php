@@ -24,13 +24,13 @@
 
 					<div class="form-group">
 						<label for="nama">Nama Lengkap</label>
-						<input type="text" class="form-control" id="nama" name="nama" placeholder="Nama lengkap"
+						<input type="text" class="form-control" readonly="" id="nama" name="nama" placeholder="Nama lengkap"
 							   value="<?= $data['nama']; ?>">
 					</div>
 
 					<div class="form-group">
 						<label for="divisi2">Divisi</label>
-						<select name="divisi2" class="form-control">
+						<select disabled="" name="divisi2" class="form-control">
 							<?php foreach ($divisi as $d): ?>
 								<option value="<?= $data['id_div']; ?>" <?= $data['id_div']==$d['id'] ? "selected":null; ?>>
 									<?= $d['divisi']; ?>
@@ -41,15 +41,13 @@
 
 					<div class="form-group">
 						<label for="alamat">Alamat</label>
-						<textarea name="alamat" id="alamat" class="form-control" placeholder="Alamat" rows="4" cols="50" value=""><?= $data['alamat']; ?></textarea>
+						<textarea readonly="" name="alamat" id="alamat" class="form-control" placeholder="Alamat" rows="4" cols="50" value=""><?= $data['alamat']; ?></textarea>
 					</div>
 
 					<div class="form-group">
 						<label for="sekolah">Sekolah</label>
-						<input type="text" class="form-control" id="sekolah" name="sekolah" placeholder="Sekolah"
+						<input readonly="" type="text" class="form-control" id="sekolah" name="sekolah" placeholder="Sekolah"
 							   value="<?= $data['sekolah']; ?>">
-						<br>
-						<a href="" class="btn btn-sm" style="background: #00CFE8; color: white;" target="_blank">Tambah Sekolah</a>
 					</div>
 
 					<div class="form-group">

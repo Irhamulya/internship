@@ -73,7 +73,6 @@
 
 <script src="<?= base_url('asset/'); ?>js/bootstrap-datepicker.js"></script>
 
-
 <script>
 	//edit
 	$(document).ready(function() {

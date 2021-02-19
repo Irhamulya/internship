@@ -136,7 +136,7 @@ class Operational extends CI_Controller
 
 		$this->form_validation->set_rules('work_in', 'Jam Masuk', 'required');
 		$this->form_validation->set_rules('work_out', 'Jam Keluar', 'required');
-		$this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
+		$this->form_validation->set_rules('keterangan', 'Keterangan');
 		
 
 		if ($this->form_validation->run() == true) {

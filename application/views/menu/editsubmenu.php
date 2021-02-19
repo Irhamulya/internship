@@ -51,7 +51,7 @@
 
 					<div class="form-group">
 						<div class="form-check">
-							<input type="checkbox" class="form-check-input" value="<?= $tampil['is_active']; ?>" name="is_active2" id="is_active2"<?=$tampil['is_active']==1?"checked":null; ?>>
+							<input type="checkbox" class="form-check-input" value="<?= $tampil['is_active']; ?>" name="is_active2" id="is_active2">
 							<label class="form-check-label" for="">Active?</label>
 						</div>
 					</div>

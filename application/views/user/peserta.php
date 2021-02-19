@@ -48,22 +48,21 @@
 								<td><?php echo $ps["tanggal_akhir"]; ?></td>
 								<td>
 									<a href="<?= base_url(); ?>user/editpeserta/<?= $ps["id"]; ?>" class="badge"
-									   style=" color:white;  background-color:#FF8C00;"><i
-												class="far fa-fw fa-edit"></i></a>
+									   style=" color:white;  background-color:#FF8C00;"><i class="far fa-fw fa-edit"></i></a>
 									<a href="<?= base_url(); ?>user/hapuspeserta/<?= $ps["id"]; ?>"
 									   class="badge badge-danger" onclick="return confirm('Yakin?');"><i
 												class="fas fa-fw fa-trash-alt"></i>
 									</a>
 								</td>
 								<?php if ($ps["status"] == 0): ?>
-									<td><?php echo("Menunggu persetujuan"); ?></td>
+									<td><?php echo("Magang akan segera berakhir"); ?></td>
 								<?php elseif ($ps["status"] == 2): ?>
 									<td>
-										<?php echo("Ditolak"); ?>
+										<?php echo("Peserta Active"); ?>
 									</td>
 								<?php else: ?>
 									<td>
-										<?php echo("Active"); ?>
+										<?php echo(""); ?>
 									</td>
 								<?php endif ?>
 							</tr>
@@ -81,17 +80,17 @@
 										<a href="<?= base_url(); ?>user/editpeserta/<?= $ps["id"]; ?>" class="badge"
 										   style=" color:white;  background-color:#FF8C00;">Perbarui</a>
 									</td>
-									<?php if ($ps["status"] == 0): ?>
-										<td><?php echo("Menunggu persetujuan"); ?></td>
-									<?php elseif ($ps["status"] == 2): ?>
-										<td>
-											<?php echo("Ditolak"); ?>
-										</td>
-									<?php else: ?>
-										<td>
-											<?php echo("Active"); ?>
-										</td>
-									<?php endif ?>
+								<?php if ($ps["status"] == 0): ?>
+									<td><?php echo("Magang akan segera berakhir"); ?></td>
+								<?php elseif ($ps["status"] == 2): ?>
+									<td>
+										<?php echo("Peserta Active"); ?>
+									</td>
+								<?php else: ?>
+									<td>
+										<?php echo(""); ?>
+									</td>
+								<?php endif ?>
 								</tr>
 							<?php endif ?>
 						<?php endif ?>

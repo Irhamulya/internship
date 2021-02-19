@@ -24,27 +24,27 @@
 				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
 					<thead>
 					<tr>
-						<th>Division</th>
-						<th>Kuota</th>
-						<th>Config</th>
+						<th>Sekolah</th>
+						<th>Alamat</th>
+						<!-- <th>Config</th> -->
 					</tr>
 					</thead>
 					<tbody>
 
-					<?php foreach ($divisi as $d) : ?>
+					<?php foreach ($sekolah as $sk) : ?>
 
 						<tr>
-							<td><?php echo $d["divisi"]; ?></td>
-							<td><?php echo $d["qta"]; ?></td>
-							<td>
-								<a href="<?= base_url(); ?>operational/editdivisi/<?= $d["id"]; ?>" class="badge"
+							<td><?php echo $sk["sekolah"]; ?></td>
+							<td><?php echo $sk["alamat"]; ?></td>
+							<!-- <td>
+								<a href="<?= base_url(); ?>operational/editdivisi/<?= $sk["id"]; ?>" class="badge"
 								   style=" color:white;  background-color:#FF8C00;"><i
 											class="far fa-fw fa-edit"></i></a>
-								<a href="<?= base_url(); ?>operational/hapusdivisi/<?= $d["id"]; ?>"
+								<a href="<?= base_url(); ?>operational/hapusdivisi/<?= $sk["id"]; ?>"
 								   class="badge badge-danger" onclick="return confirm('Yakin?');"><i
 											class="fas fa-fw fa-trash-alt"></i>
 								</a>
-							</td>
+							</td> -->
 						</tr>
 
 					<?php endforeach; ?>
@@ -70,21 +70,21 @@
 	<div class="modal-dialog ">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="MagangModalLabel">Add Division</h5>
+				<h5 class="modal-title" id="MagangModalLabel">Add Sekolah</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 
-			<?php echo form_open_multipart('operational/divisi'); ?>
+			<?php echo form_open_multipart('participant/sekolah'); ?>
 			<div class="modal-body">
 				<div class="form-group">
-					<label for="divisi">Division</label>
-					<input type="text" required class="form-control" id="divisi" name="divisi" placeholder="Division">
+					<label for="sekolah">Sekolah</label>
+					<input type="text" required class="form-control" id="sekolah" name="sekolah" placeholder="Sekolah">
 				</div>
 				<div class="form-group">
-					<label for="kouta">Kouta</label>
-					<input type="number" class="form-control" required id="kouta" name="kouta" placeholder="Kouta">
+					<label for="alamat">Alamat</label>
+					<input type="textarea" class="form-control" required id="alamat" name="alamat" placeholder="Alamat">
 				</div>
 	        </div>
 			<div class="modal-footer">

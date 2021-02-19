@@ -13,9 +13,9 @@
 				</div>
 			<?php endif; ?>
 			<?= $this->session->flashdata('message'); ?>
-
-			<a href="" class="btn mb-2" style="background: #00CFE8; color: white;" data-toggle="modal"
-			   data-target="#MagangModal">Add data</a>
+			<?php if ($user['role_id'] == 4	 ): ?>
+				<a href="" class="btn mb-2" style="background: #00CFE8; color: white;" data-toggle="modal"data-target="#MagangModal">Add data</a>
+			<?php endif ?>
 
 		</div>
 		<div class="card-body">
@@ -47,8 +47,7 @@
 								<td><?php echo $ps["tanggal_akhir"]; ?></td>
 								<?php if ($ps["status"] == 0): ?>
 									<td>
-										<a href="<?= base_url(); ?>participant/pindahpeserta/<?= $ps["id"]; ?>"
-										   class="badge badge-success">Accept</a>
+										<a href="<?= base_url(); ?>participant/pindahpeserta/<?= $ps["id"]; ?>" class="badge badge-success">Accept</a>
 										<a href="<?= base_url(); ?>Participant/tolakpeserta/<?= $ps["id"]; ?>"
 										   class="badge badge-danger">Decline</a>
 									</td>
@@ -107,7 +106,7 @@
 				</button>
 			</div>
 
-			<?php echo form_open_multipart('participant/register'); ?>
+			<?php echo form_open_multipart('participant/application'); ?>
 			<div class="modal-body">
 				<div class="form-group">
 					<label for="nama">Nama Lengkap</label>
@@ -126,7 +125,12 @@
 				</div>
 				<div class="form-group">
 					<label for="sekolah">Sekolah</label>
-					<input type="text" class="form-control" required id="sekolah" name="sekolah" placeholder="Sekolah">
+					<select name="sekolah" id="sekolah" class="form-control" required>
+						<option value="">Select Sekolah</option>
+						<?php foreach ($sekolah as $sk): ?>
+							<option value="<?= $sk['id']; ?>"><?= $sk['sekolah']; ?></option>
+						<?php endforeach; ?>
+					</select>
 				</div>
 				<div class="form-group">
 					<label for="surat_pkl">Surat permohonan PKL</label>

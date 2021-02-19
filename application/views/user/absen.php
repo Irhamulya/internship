@@ -1,8 +1,6 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
-
     <!-- Page Heading -->
-
     <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -14,18 +12,25 @@
             <?php endif; ?>
             <?= $this->session->flashdata('message'); ?>
 
-             <form action="/absen" method="post">
+             <form action="/absen" method="">
                             <table class="table table-responsive">
                                <?php foreach ($peserta as $p) : ?>
+                               <?php foreach ($jamkerja as $j) : ?>
                                 <?php if ($p['email'] ==$user['email'] ): ?>
                                 <tr>
+                                    <th><label for="Keterangan">NOTE</label></th>
+                                    <th class="text-center"><label for="Absen_Masuk">Absen masuk</label></th>
+                                    <th class="text-center"><label for="Absen_Keluar">Absen keluar</labels></th>
+                                    <th><label for="jamkerja">Jam Masuk kerja</label></th>
+                                    <th><label for="mulai pkl">Tanggal mulai pkl</label></th>
+                                </tr>
+                                <tr>
+
                                     <td>
-                                        <input type="text" placeholder="Keterangan..." name="note" class="form-control" >
+                                        <input type="text" class="form-control" id="note" name="note" placeholder="Keterangan.." value="">
                                     </td>
-                                    <td>
-                                        <input type="text" name="tanggal_mulai2" id="tanggal_mulai2"  value="<?= $p['tanggal_mulai']; ?>" readonly class="form-control">
-                                    </td>
-                                    <?php if (date("Y-m-d")<$p['tanggal_mulai']){?>
+                                    
+                                <?php if (date("Y-m-d")<$p['tanggal_mulai']){?>
                                     <td>
                                         <button type="submit" class="btn btn-flat" style="background: #00CFE8; color: white;" name="btnIn" id="btnIn" disabled="" value="btnIn">Absen Masuk
                                         </button>
@@ -34,18 +39,27 @@
                                         <button type="submit" class="btn btn-flat" style="background: #00CFE8; color: white;" name="btnOut" id="btnOut" disabled=""  value="btnOut">Absen Keluar
                                         </button>
                                     </td>
-                                    <?php }else{?>
+                                <?php }elseif (date("Y-m-d")>=$p['tanggal_mulai']){?>
                                     <td>
-                                        <button type="submit" class="btn btn-flat" style="background: #00CFE8; color: white;" name="btnIn" id="btnIn"  value="btnIn">Absen Masuk
-                                        </button>
+                                        <a href="<?= base_url(); ?>user/absenmasuk"
+                                           class="btn btn-flat" style="background: #00CFE8; color: white;">Absen Masuk
+                                        </a>
                                     </td>
                                     <td>
-                                        <button type="submit" class="btn btn-flat" style="background: #00CFE8; color: white;" name="btnOut" id="btnOut" value="btnOut">Absen Keluar
-                                        </button>
+                                        <a href="<?= base_url(); ?>user/absenkeluar"
+                                           class="btn btn-flat" style="background: #00CFE8; color: white;">Absen Keluar
+                                        </a>
                                     </td>
-                                    <?php } ?>
+                                <?php } ?>
+                                    <td>
+                                        <input type="text" name="jamkerja" id="jamkerja"  value="<?= $j['work_in']; ?>" readonly class="form-control">
+                                    </td>
+                                    <td>
+                                        <input type="text" name="tanggal_mulai2" id="tanggal_mulai2"  value="<?= $p['tanggal_mulai']; ?>" readonly class="form-control">
+                                    </td>
                                 </tr>
                             <?php endif ; ?>
+                            <?php endforeach ; ?>
                             <?php endforeach ; ?>
                             </table>
                         </form>
@@ -61,27 +75,30 @@
                         <th>Jam Masuk</th>
                         <th>Jam Keluar</th>
                         <th>Terlambat</th>        
-                        <th>Keterangan</th>
-                        
+                        <th>Keterangan</th>                    
                     </tr>
                     </thead>
                     <tbody>
-
                     <?php foreach ($absensi as $ab) : ?>
+                        <?php if ($ab["user_email"] == $user["email"]): ?>
 
-                        <tr>
-                            <td><?php echo $ab["date"]; ?></td>
-                            <td><?php echo $ab["time_in"]; ?></td>
-                            <td><?php echo $ab["time_out"]; ?></td>
-                            <td><?php echo $ab["overdue"]; ?></td>
-                            <td><?php echo $ab["note"]; ?></td>
-            
-                        </tr>
-
+                            <tr>
+                                <td><?php echo $ab["date"]; ?></td>
+                                <td><?php echo $ab["time_in"]; ?></td>
+                                <td><?php echo $ab["time_out"]; ?></td>
+                            <?php if ($ab["overdue"] == 2): ?>
+                                <td><?php echo("Telat"); ?></td>
+                            <?php elseif ($ab["overdue"] == 1): ?>
+                                <td><?php echo("Tepat waktu"); ?></td>
+                            <?php else: ?>
+                                <td><?php echo("-"); ?></td>
+                            <?php endif ?>
+                                <td><?php echo $ab["note"];?></td>
+                            </tr>
+                            
+                        <?php endif ?>
                     <?php endforeach; ?>
-
                     </tbody>
-
                 </table>
             </div>
         </div>
